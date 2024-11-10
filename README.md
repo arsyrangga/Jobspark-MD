@@ -8,8 +8,7 @@
 
 [Members](#members) •
 [Requirement](#requirement) •
-[About](#about) •
-[Getting Started](#getting-started)
+[About](#about)
 
 </div>
 
@@ -36,7 +35,7 @@ A job seeker platform specifically designed for individuals with Down syndrome, 
 - [x] [Data Store](https://developer.android.com/jetpack/androidx/releases/datastore?hl=id)
 - [x] [Navigation](https://developer.android.com/jetpack/compose/navigation)
 
-### 💻 Installation
+### Installation
 #### 1. Clone this Project to your Computer
 ```bash
 git clone https://github.com/NazhifFahmi/JobSpark
