@@ -6,7 +6,7 @@
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
 
-[Members](#our) •
+[Members](#members) •
 [Requirement](#requirement) •
 [About](#about) •
 [Getting Started](#getting-started)
@@ -14,11 +14,11 @@
 </div>
 
 
-## Our MD Members
+## Members
 | Member | Student ID | Path | Role | Contacts |
 | :-: | :-: | :-: | :-: | :-: |
-| Nazhif Alaudin Fahmi | A297B4KY3306 | Mobile Development | Android Mobile Developer |(https://github.com/ttaufiiqn)) |
-| Tubagus Taufiq Nurdin | A297B4KY4302 | Mobile Development | Android Mobile Developer | ((https://github.com/NazhifFahmi)) |
+| Nazhif Alaudin Fahmi | A297B4KY3306 | Mobile Development | Android Mobile Developer | https://github.com/NazhifFahmi|
+| Tubagus Taufiq Nurdin | A297B4KY4302 | Mobile Development | Android Mobile Developer | https://github.com/ttaufiiqn|
 
 ## Requirement
 * Android Studio Giraffe or higher [Download](https://developer.android.com/studio?hl=id)
@@ -29,7 +29,7 @@
 ## About
 A job seeker platform specifically designed for individuals with Down syndrome, which aims to grow an inclusive ecosystem that promotes equal opportunities in entrepreneurship and employment. Through this platform, we hope to empower people with Down syndrome to access meaningful employment opportunities and fully participate in the world of work.
 
-### 👓 Dependencies
+### Dependencies
 - [x] [Retrofit](https://square.github.io/retrofit/).
 - [x] [CameraX](https://developer.android.com/training/camerax)
 - [x] [Jetpack Compose](https://developer.android.com/jetpack?hl=id)
