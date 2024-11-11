@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#2196F3" /> <!-- Blue color for banner background -->
+    <corners android:radius="20dp" /> <!-- Rounded corners with 20dp radius -->
+</shape>
