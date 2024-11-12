@@ -193,7 +193,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="#2196F3"
+        android:background="#F5F5F5"
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingVertical="8dp">
