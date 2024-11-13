@@ -1,90 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F5F9">
+    android:background="#F6F6F6">
 
     <TextView
-        android:id="@+id/greeting_text"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/dm_sans_reguler"
-        android:text="Hello Brandon."
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="Riwayat"
         android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="24sp" />
 
-    <RelativeLayout
-        android:id="@+id/banner_section"
+    <LinearLayout
+        android:id="@+id/job_card"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@id/greeting_text"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_blue_background">
+        android:background="#F0F0F0"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/banner_description"
-            android:layout_width="322dp"
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="-50dp"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Setiap Talenta Berharga: Temukan Kesempatan Kerja yang Sesuai!"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp" />
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/banner_image"
-            android:layout_width="85dp"
-            android:layout_height="88dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="-14dp"
-            android:src="@drawable/image_banner" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/job_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Job Icon"
+                android:src="@drawable/logo_dicoding" />
 
-    <TextView
-        android:id="@+id/recommended_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/banner_section"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/dm_sans_reguler"
-        android:text="Direkomendasikan Untuk Anda"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/job_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_bold"
+                android:text="UI/UX Designer"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@id/bottom_navigation"
-        android:layout_below="@id/recommended_title"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1">
+            <TextView
+                android:id="@+id/job_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/dm_sans_reguler"
+                android:text="Lamaran anda telah terkirim."
+                android:textColor="#000000"
+                android:textSize="12sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_jobs"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_above="@id/bottom_navigation"
-            android:layout_below="@id/search_bar"
-            android:layout_marginTop="10dp"
-            android:clipToPadding="false"
-            android:paddingBottom="80dp"
-            tools:listitem="@layout/item_job_card" />
+            <TextView
+                android:id="@+id/job_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_reguler"
+                android:text="25 menit yang lalu"
+                android:textColor="#999999"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/detail_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#1A73E8"
+                android:fontFamily="@font/dm_sans_reguler"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="Detail"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
 
 
-    </ScrollView>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottom_navigation"
