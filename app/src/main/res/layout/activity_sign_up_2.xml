@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="Lengkapi Profil"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1F1F39"
+        app:layout_constraintTop_toBottomOf="@id/backButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/fullNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Lengkap"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/fullNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/dm_sans_reguler"
+        android:hint="Nama Lengkap"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        app:layout_constraintTop_toBottomOf="@id/fullNameLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/birthDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Birth Date"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/fullNameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/birthDateEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/dm_sans_reguler"
+        android:hint="Birth Date"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        app:layout_constraintTop_toBottomOf="@id/birthDateLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/genderSpinner"
+        android:layout_marginEnd="8dp" />
+
+    <ImageView
+        android:id="@+id/birthDateIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintTop_toTopOf="@id/birthDateEditText"
+        app:layout_constraintEnd_toEndOf="@id/birthDateEditText"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/genderLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintStart_toEndOf="@id/birthDateEditText"
+        app:layout_constraintTop_toTopOf="@id/birthDateLabel"
+        android:layout_marginStart="8dp" />
+
+    <Spinner
+        android:id="@+id/genderSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/genderLabel"
+        app:layout_constraintStart_toEndOf="@id/birthDateEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp" />
+
+    <TextView
+        android:id="@+id/addressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alamat Tempat Tinggal"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/birthDateEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/addressEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/dm_sans_reguler"
+        android:hint="Alamat Tempat Tinggal"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        app:layout_constraintTop_toBottomOf="@id/addressLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/emergencyContactLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nomor Darurat"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/addressEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/emergencyContactEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:fontFamily="@font/dm_sans_reguler"
+        android:hint="Nomor Darurat"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        app:layout_constraintTop_toBottomOf="@id/emergencyContactLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+
+    <ImageButton
+        android:id="@+id/nextButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#1F76D3"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_arrow_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
