@@ -78,12 +78,11 @@
             android:layout_height="0dp"
             android:layout_above="@id/bottom_navigation"
             android:layout_below="@id/search_bar"
+            android:layout_marginHorizontal="8dp"
             android:layout_marginTop="10dp"
             android:clipToPadding="false"
             android:paddingBottom="80dp"
             tools:listitem="@layout/item_job_card" />
-
-
     </ScrollView>
 
     <LinearLayout
