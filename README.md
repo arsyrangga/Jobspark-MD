@@ -29,7 +29,7 @@
 A job seeker platform specifically designed for individuals with Down syndrome, which aims to grow an inclusive ecosystem that promotes equal opportunities in entrepreneurship and employment. Through this platform, we hope to empower people with Down syndrome to access meaningful employment opportunities and fully participate in the world of work.
 
 ### Dependencies
-- [x] [Retrofit](https://square.github.io/retrofit/).
+- [x] [Retrofit](https://square.github.io/retrofit/)
 - [x] [CameraX](https://developer.android.com/training/camerax)
 - [x] [Jetpack Compose](https://developer.android.com/jetpack?hl=id)
 - [x] [Data Store](https://developer.android.com/jetpack/androidx/releases/datastore?hl=id)
