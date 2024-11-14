@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -10,10 +8,10 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="171dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_corner"
         android:padding="16dp">
 
         <ImageView
@@ -35,14 +33,14 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/save_icon"
+            android:id="@+id/delete_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:contentDescription="Save"
-            android:src="@drawable/ic_bookmark" />
+            android:contentDescription="Delete"
+            android:src="@drawable/ic_delete" />
 
         <TextView
             android:id="@+id/company_location"
@@ -97,22 +95,6 @@
                 android:paddingVertical="4dp"
                 android:text="Full time"
                 android:textColor="#000000" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/apply_button"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:backgroundTint="#FFA000"
-                android:fontFamily="@font/dm_sans_reguler"
-                android:text="Ajukan"
-                android:textColor="#FFFFFF" />
-
         </LinearLayout>
 
     </RelativeLayout>

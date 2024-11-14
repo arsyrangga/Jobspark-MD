@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F6F6F6">
@@ -11,93 +11,21 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
         android:fontFamily="@font/dm_sans_bold"
-        android:text="Riwayat"
+        android:text="Simpan Lowongan"
         android:textColor="#000000"
         android:textSize="24sp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/job_card"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_saved"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="16dp"
-        android:cardCornerRadius="16dp"
-        android:cardElevation="4dp"
-        android:padding="0dp"
-        app:cardCornerRadius="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/job_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:contentDescription="Job Icon"
-                    android:src="@drawable/logo_dicoding" />
-
-                <TextView
-                    android:id="@+id/job_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/dm_sans_bold"
-                    android:text="UI/UX Designer"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/job_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:fontFamily="@font/dm_sans_reguler"
-                    android:text="Lamaran anda telah terkirim."
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/job_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:fontFamily="@font/dm_sans_reguler"
-                    android:text="25 menit yang lalu"
-                    android:textColor="#999999"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/detail_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="#1A73E8"
-                    android:fontFamily="@font/dm_sans_reguler"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:text="Detail"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
+        android:layout_height="0dp"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/title"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="80dp"
+        tools:listitem="@layout/item_card_saved" />
 
     <LinearLayout
         android:id="@+id/bottom_navigation"
@@ -107,8 +35,7 @@
         android:background="#FFFFFF"
         android:elevation="8dp"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingVertical="10dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -209,7 +136,5 @@
                 android:textColor="#000000"
                 android:textSize="12sp" />
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>
