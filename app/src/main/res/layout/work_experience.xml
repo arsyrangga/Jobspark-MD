@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="Tambahkan Pengalaman"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1F1F39"
+        app:layout_constraintTop_toBottomOf="@id/backButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/jobTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Judul Pekerjaan"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/jobTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Judul Pekerjaan"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/jobTitleLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/companyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perusahaan"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/jobTitleEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/companyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Perusahaan"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/companyLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/startDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Mulai"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/companyEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/startDateEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="MM/YYYY"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/startDateLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/endDateEditText"
+        android:layout_marginEnd="8dp" />
+
+    <ImageView
+        android:id="@+id/birthDateIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintTop_toTopOf="@id/startDateEditText"
+        app:layout_constraintEnd_toEndOf="@id/startDateEditText"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/endDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Berakhir"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toTopOf="@id/startDateLabel"
+        app:layout_constraintStart_toEndOf="@id/startDateEditText"
+        android:layout_marginStart="8dp" />
+
+
+    <EditText
+        android:id="@+id/endDateEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="MM/YYYY"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/endDateLabel"
+        app:layout_constraintStart_toEndOf="@id/startDateEditText"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/birthDateIcon2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_calendar"
+        app:layout_constraintTop_toTopOf="@id/endDateEditText"
+        app:layout_constraintEnd_toEndOf="@id/endDateEditText"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp" />
+
+    <CheckBox
+        android:id="@+id/currentlyWorkingCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saya masih bekerja di sini"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/endDateEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/descriptionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Deskripsi"
+        android:textSize="14sp"
+        android:textColor="#1F1F39"
+        android:fontFamily="@font/dm_sans_reguler"
+        app:layout_constraintTop_toBottomOf="@id/currentlyWorkingCheckBox"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Tambahkan deskripsi singkat"
+        android:background="@drawable/rounded_edittext"
+        android:padding="16dp"
+        android:textColorHint="#888888"
+        android:fontFamily="@font/dm_sans_reguler"
+        android:gravity="top"
+        app:layout_constraintTop_toBottomOf="@id/descriptionLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIMPAN"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1F76D3"
+        android:fontFamily="@font/dm_sans_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
