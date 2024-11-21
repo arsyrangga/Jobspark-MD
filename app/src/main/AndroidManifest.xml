@@ -14,31 +14,28 @@
         tools:ignore="LockedOrientationActivity"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.HomeActivity"
             android:exported="false" />
-        <activity android:name=".ui.activity.SearchActivity">
-        </activity>
+        <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.HistoryActivity" />
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.OnboardingActivity">
-        </activity>
-        <activity android:name=".ui.activity.LoginActivity"></activity>
-        <activity android:name=".ui.activity.ProfileActivity">
-
-        </activity>
-        <activity android:name=".ui.activity.HomeScreenActivity">
-        </activity>
+        <activity android:name=".ui.activity.OnboardingActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.ProfileActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.HomeScreenActivity" />
+        <activity android:name=".ui.activity.VerificationActivity" />
+        <activity android:name=".ui.activity.InterestActivity" />
         <activity android:name=".ui.activity.SavedActivity" />
+        <activity android:name=".ui.activity.DetailHistoryActivity" />
+        <activity android:name=".ui.activity.CompleteProfileActivity" />
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:exported="true"
-            android:screenOrientation="portrait">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

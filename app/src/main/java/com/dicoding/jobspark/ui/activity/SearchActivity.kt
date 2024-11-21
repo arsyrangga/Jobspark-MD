@@ -52,6 +52,7 @@ class SearchActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onResume() {
         super.onResume()
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
