@@ -42,8 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="@android:color/white"
-                android:cardCornerRadius="16dp"
-                android:cardElevation="4dp"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 app:cardCornerRadius="16dp">

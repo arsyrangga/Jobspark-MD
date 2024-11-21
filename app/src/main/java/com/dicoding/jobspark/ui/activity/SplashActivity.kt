@@ -13,15 +13,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            goToNextActivity()
+            startActivity(Intent(this, OnboardingActivity::class.java))
             finish()
         }, 3000)
-    }
-
-    private fun goToNextActivity(){
-        Intent(this, MainActivity::class.java).also{
-            startActivity(it)
-            finish()
-        }
     }
 }

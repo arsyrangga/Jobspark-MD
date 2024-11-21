@@ -16,10 +16,22 @@
         <activity
             android:name=".ui.activity.HomeActivity"
             android:exported="false" />
+        <activity android:name=".ui.activity.SearchActivity">
+        </activity>
+        <activity android:name=".ui.activity.HistoryActivity" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.OnboardingActivity">
+        </activity>
+        <activity android:name=".ui.activity.LoginActivity"></activity>
+        <activity android:name=".ui.activity.ProfileActivity">
+
+        </activity>
+        <activity android:name=".ui.activity.HomeScreenActivity">
+        </activity>
+        <activity android:name=".ui.activity.SavedActivity" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
