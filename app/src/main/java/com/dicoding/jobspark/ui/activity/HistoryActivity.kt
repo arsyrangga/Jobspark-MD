@@ -12,7 +12,7 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
-        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val bottomNav: BottomNavigationView = findViewById(R.id.history_bottom_navigation)
 
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -29,8 +29,10 @@ class HistoryActivity : AppCompatActivity() {
                 }
 
                 R.id.history -> {
-                    val intent = Intent(this, HistoryActivity::class.java)
-                    startActivity(intent)
+                    if (this::class.java != HistoryActivity::class.java) {
+                        val intent = Intent(this, HistoryActivity::class.java)
+                        startActivity(intent)
+                    }
                     true
                 }
 
@@ -49,5 +51,10 @@ class HistoryActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNav: BottomNavigationView = findViewById(R.id.history_bottom_navigation)
+        bottomNav.selectedItemId = R.id.history
     }
 }

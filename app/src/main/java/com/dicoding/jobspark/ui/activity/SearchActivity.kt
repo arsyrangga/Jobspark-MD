@@ -23,8 +23,10 @@ class SearchActivity : AppCompatActivity() {
                 }
 
                 R.id.search -> {
-                    val intent = Intent(this, SearchActivity::class.java)
-                    startActivity(intent)
+                    if (this::class.java != SearchActivity::class.java) {
+                        val intent = Intent(this, SearchActivity::class.java)
+                        startActivity(intent)
+                    }
                     true
                 }
 
@@ -49,5 +51,10 @@ class SearchActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.search
     }
 }
