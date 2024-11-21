@@ -17,7 +17,7 @@ class SearchActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, HomeScreenActivity::class.java)
                     startActivity(intent)
                     true
                 }
