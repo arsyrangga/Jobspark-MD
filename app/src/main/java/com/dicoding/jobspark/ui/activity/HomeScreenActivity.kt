@@ -16,8 +16,10 @@ class HomeScreenActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
+                    if (this::class.java != HomeScreenActivity::class.java) {
+                        val intent = Intent(this, HomeScreenActivity::class.java)
+                        startActivity(intent)
+                    }
                     true
                 }
 
@@ -48,6 +50,10 @@ class HomeScreenActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.home
     }
 }

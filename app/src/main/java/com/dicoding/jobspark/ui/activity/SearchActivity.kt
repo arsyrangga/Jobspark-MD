@@ -17,14 +17,16 @@ class SearchActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, HomeScreenActivity::class.java)
                     startActivity(intent)
                     true
                 }
 
                 R.id.search -> {
-                    val intent = Intent(this, SearchActivity::class.java)
-                    startActivity(intent)
+                    if (this::class.java != SearchActivity::class.java) {
+                        val intent = Intent(this, SearchActivity::class.java)
+                        startActivity(intent)
+                    }
                     true
                 }
 
@@ -49,5 +51,10 @@ class SearchActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.search
     }
 }

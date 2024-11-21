@@ -17,7 +17,7 @@ class SavedActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, HomeScreenActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -35,8 +35,10 @@ class SavedActivity : AppCompatActivity() {
                 }
 
                 R.id.saved -> {
+                    if (this::class.java != SavedActivity::class.java) {
                     val intent = Intent(this, SavedActivity::class.java)
                     startActivity(intent)
+                    }
                     true
                 }
 
@@ -49,5 +51,10 @@ class SavedActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.saved
     }
 }

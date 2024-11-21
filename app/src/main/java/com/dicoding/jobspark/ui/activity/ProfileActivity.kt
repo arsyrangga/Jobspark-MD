@@ -16,7 +16,7 @@ class ProfileActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, HomeScreenActivity::class.java)
                     startActivity(intent)
                     true
                 }
@@ -40,13 +40,20 @@ class ProfileActivity : AppCompatActivity() {
                 }
 
                 R.id.profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    if (this::class.java != ProfileActivity::class.java) {
+                        val intent = Intent(this, ProfileActivity::class.java)
+                        startActivity(intent)
+                    }
                     true
                 }
 
                 else -> false
             }
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.profile
     }
 }
