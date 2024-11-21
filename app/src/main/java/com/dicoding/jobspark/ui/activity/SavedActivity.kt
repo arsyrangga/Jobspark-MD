@@ -36,8 +36,8 @@ class SavedActivity : AppCompatActivity() {
 
                 R.id.saved -> {
                     if (this::class.java != SavedActivity::class.java) {
-                    val intent = Intent(this, SavedActivity::class.java)
-                    startActivity(intent)
+                        val intent = Intent(this, SavedActivity::class.java)
+                        startActivity(intent)
                     }
                     true
                 }
@@ -52,6 +52,7 @@ class SavedActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onResume() {
         super.onResume()
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)

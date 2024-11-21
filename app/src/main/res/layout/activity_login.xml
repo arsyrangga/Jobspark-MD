@@ -146,6 +146,7 @@
             android:textColor="#336749" />
 
         <Button
+            android:id="@+id/regbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"

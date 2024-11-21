@@ -9,13 +9,19 @@ import com.dicoding.jobspark.R
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login) // Make sure the layout matches
+        setContentView(R.layout.activity_login)
 
-        val loginButton: Button = findViewById(R.id.loginButton) // Assuming your button id is 'button_masuk'
+        val loginButton: Button = findViewById(R.id.loginButton)
+        val registerButton: Button = findViewById(R.id.regbutton)
 
         loginButton.setOnClickListener {
             val intent = Intent(this, HomeScreenActivity::class.java)
             startActivity(intent)
         }
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
