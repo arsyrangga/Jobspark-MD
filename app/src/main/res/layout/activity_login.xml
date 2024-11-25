@@ -64,33 +64,33 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"/>
 
-    <EditText
-        android:id="@+id/passwordLoginEditText"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/rounded_edittext"
-        android:fontFamily="@font/dm_sans_reguler"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:textColorHint="#888888"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLabel" />
+        app:layout_constraintTop_toBottomOf="@id/passwordLabel">
 
-    <ImageView
-        android:id="@+id/passwordToggle"
-        android:layout_width="33dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="337dp"
-        android:contentDescription="Show Password"
-        android:src="@drawable/ic_visibility_off"
-        app:layout_constraintStart_toStartOf="@+id/passwordLoginEditText"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="277dp" />
+        <EditText
+            android:id="@+id/passwordLoginEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_edittext"
+            android:fontFamily="@font/dm_sans_reguler"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColorHint="#888888"/>
+
+        <ImageView
+            android:id="@+id/passwordToggle"
+            android:layout_width="33dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="Show Password"
+            android:src="@drawable/ic_visibility_off"
+            android:layout_marginEnd="8dp"/>
+    </RelativeLayout>
 
     <CheckBox
         android:id="@+id/rememberMeCheckBox"
