@@ -3,6 +3,7 @@ package com.dicoding.jobspark.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
 
@@ -11,6 +12,12 @@ class VerificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_3)
+
+        val backButton: ImageView = findViewById(R.id.backButton)
+
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         Handler().postDelayed({
             val intent = Intent(this, InterestActivity::class.java)
