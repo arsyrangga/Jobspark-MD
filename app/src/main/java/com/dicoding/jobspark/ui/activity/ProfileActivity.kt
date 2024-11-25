@@ -2,6 +2,9 @@ package com.dicoding.jobspark.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,6 +52,23 @@ class ProfileActivity : AppCompatActivity() {
 
                 else -> false
             }
+        }
+        val settingButton: ImageView = findViewById(R.id.settingsIcon)
+        settingButton.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        val addWorkButton: ImageView = findViewById(R.id.addIconWork)
+        addWorkButton.setOnClickListener {
+            val intent = Intent(this, WorkExperienceActivity::class.java)
+            startActivity(intent)
+        }
+
+        val editWorkButton: ImageView = findViewById(R.id.editIcon)
+        editWorkButton.setOnClickListener {
+            val intent = Intent(this, WorkExperienceEditActivity::class.java)
+            startActivity(intent)
         }
     }
 

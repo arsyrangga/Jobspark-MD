@@ -24,6 +24,10 @@
         <activity android:name=".ui.activity.OnboardingActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.ProfileActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.WorkExperienceActivity" />
+        <activity android:name=".ui.activity.WorkExperienceEditActivity" />
+        <activity android:name=".ui.activity.EditPasswordActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.HomeScreenActivity" />
         <activity android:name=".ui.activity.VerificationActivity" />
