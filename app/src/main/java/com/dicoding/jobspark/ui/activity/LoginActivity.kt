@@ -2,9 +2,11 @@ package com.dicoding.jobspark.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
@@ -16,6 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    private var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +26,9 @@ class LoginActivity : AppCompatActivity() {
 
         val loginButton: Button = findViewById(R.id.loginButton)
         val registerButton: Button = findViewById(R.id.regbutton)
-
         val emailEditText = findViewById<EditText>(R.id.emailLoginEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordLoginEditText)
+        val passwordToggle: ImageView = findViewById(R.id.passwordToggle)
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -41,6 +44,23 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+        passwordToggle.setOnClickListener {
+            togglePasswordVisibility(passwordEditText, passwordToggle)
+        }
+
+    }
+
+    private fun togglePasswordVisibility(passwordEditText: EditText, passwordToggle: ImageView) {
+        if (isPasswordVisible) {
+            passwordEditText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            passwordToggle.setImageResource(R.drawable.ic_visibility_off)
+        } else {
+            passwordEditText.inputType = InputType.TYPE_CLASS_TEXT
+            passwordToggle.setImageResource(R.drawable.ic_visibility)
+        }
+        passwordEditText.setSelection(passwordEditText.text.length)
+        isPasswordVisible = !isPasswordVisible
     }
 
     private fun loginUser(email: String, password: String) {

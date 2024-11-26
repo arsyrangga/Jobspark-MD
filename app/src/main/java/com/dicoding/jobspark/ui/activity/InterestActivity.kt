@@ -35,9 +35,30 @@ class InterestActivity : AppCompatActivity() {
         val specialSkillSpinner = findViewById<Spinner>(R.id.specialSkillSpinner)
         val healthConditionSpinner = findViewById<Spinner>(R.id.healthConditionSpinner)
 
-        val hobbies = arrayOf("Reading", "Gaming", "Traveling", "Music")
-        val specialSkills = arrayOf("Programming", "Designing", "Marketing")
-        val healthConditions = arrayOf("Healthy", "Sick", "Recovering")
+        val hobbies = arrayOf(
+            "Seni", "Musik", "Menari", "Kerajinan tangan", "Berkebun", "Memasak",
+            "Merawat hewan", "Menggambar atau melukis", "Teknologi dasar (komputer, tablet)",
+            "Fotografi", "Lingkungan dan alam"
+        )
+        val specialSkills = arrayOf(
+            "Membaca dasar", "Menulis sederhana", "Mendengarkan instruksi",
+            "Berbicara dengan orang lain", "Kerja tim", "Ketelitian", "Koordinasi tangan dan mata",
+            "Kesabaran", "Kreativitas", "Mengikuti langkah-langkah sederhana",
+            "Menggunakan alat sederhana", "Pemecahan masalah sederhana", "Mandiri dengan supervisi",
+            "Menjaga kebersihan", "Mengatur waktu", "Ketahanan fisik ringan"
+        )
+        val healthConditions = arrayOf(
+            "Menggunakan kursi roda",
+            "Membutuhkan kacamata",
+            "Menggunakan alat bantu dengar",
+            "Kesulitan berdiri terlalu lama",
+            "Tidak boleh mengangkat beban berat",
+            "Membutuhkan lingkungan kerja tenang",
+            "Tidak cocok di suhu panas",
+            "Tidak cocok di suhu dingin",
+            "Alergi bahan kimia tertentu",
+            "Membutuhkan istirahat berkala"
+        )
 
         val hobbyAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, hobbies)
         val specialSkillAdapter =

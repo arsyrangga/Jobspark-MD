@@ -3,8 +3,10 @@ package com.dicoding.jobspark.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
+
 
 class VerificationActivity : AppCompatActivity() {
 
@@ -20,7 +22,7 @@ class VerificationActivity : AppCompatActivity() {
         val address = intent.getStringExtra("address")
         val emergencyContact = intent.getStringExtra("emergency_contact")
 
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, InterestActivity::class.java).apply {
                 putExtra("email", email)
                 putExtra("password", password)
