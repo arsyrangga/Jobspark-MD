@@ -52,11 +52,6 @@ class HistoryActivity : AppCompatActivity() {
                 else -> false
             }
         }
-        val detailButton: Button = findViewById(R.id.detail_button)
-        detailButton.setOnClickListener {
-            val intent = Intent(this, DetailHistoryActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onResume() {
