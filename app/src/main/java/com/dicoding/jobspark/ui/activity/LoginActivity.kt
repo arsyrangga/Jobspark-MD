@@ -69,10 +69,19 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
-                    Log.d("Login", "Success: ${loginResponse?.message}")
-                    val intent = Intent(this@LoginActivity, HomeScreenActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    val token = loginResponse?.data?.token // Ambil token dari `data`
+
+                    if (token != null) {
+                        saveToken(token) // Simpan token ke SharedPreferences
+                        Log.d("Login", "Token saved: $token")
+
+                        // Pindah ke HomeScreenActivity
+                        val intent = Intent(this@LoginActivity, HomeScreenActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Token not received", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
                 }
@@ -84,4 +93,14 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
+
+
+    private fun saveToken(token: String) {
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("TOKEN", token)
+        editor.apply()
+    }
+
+
 }
