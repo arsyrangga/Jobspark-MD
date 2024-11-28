@@ -2,25 +2,26 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="171dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:layout_marginBottom="16dp"
     android:backgroundTint="#FFFFFF"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="171dp"
+        android:layout_height="wrap_content"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/job_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/logo_dicoding" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Job Image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image" />
 
         <TextView
             android:id="@+id/job_title"
@@ -28,30 +29,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/job_icon"
-            android:fontFamily="@font/dm_sans_reguler"
             android:text="UI/UX Designer"
-            android:textColor="#000000"
+            android:textColor="#000"
             android:textSize="16sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/save_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:contentDescription="Save"
-            android:src="@drawable/ic_bookmark" />
 
         <TextView
             android:id="@+id/company_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/job_title"
-            android:layout_alignStart="@id/job_title"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
+            android:layout_toEndOf="@id/job_icon"
             android:text="Dicoding • Bandung"
             android:textColor="#757575"
             android:textSize="14sp" />
@@ -61,13 +51,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/company_location"
-            android:layout_alignStart="@id/job_title"
-            android:layout_marginStart="-46dp"
-            android:layout_marginTop="11dp"
-            android:fontFamily="@font/dm_sans_reguler"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/job_icon"
             android:text="15 Juta/Bulan"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textColor="#000"
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,20 +66,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/job_type_button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="#E0E0E0"
-                android:fontFamily="@font/dm_sans_reguler"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:text="Desainer Senior"
-                android:textColor="#000000" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
                 android:backgroundTint="#E0E0E0"
                 android:fontFamily="@font/dm_sans_reguler"
                 android:paddingHorizontal="8dp"
@@ -98,21 +78,14 @@
                 android:text="Full time"
                 android:textColor="#000000" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
             <Button
                 android:id="@+id/apply_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
                 android:backgroundTint="#FFA000"
                 android:fontFamily="@font/dm_sans_reguler"
                 android:text="Ajukan"
                 android:textColor="#FFFFFF" />
-
         </LinearLayout>
 
     </RelativeLayout>

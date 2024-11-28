@@ -1,6 +1,5 @@
 package com.dicoding.jobspark.data.remote
 
-import kotlinx.coroutines.Job
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -27,13 +26,6 @@ data class RegisterRequest(
     val special_ability: String,
     val health_condition: String
 )
-data class Job(
-    val id: Int,
-    val title: String,
-    val company: String,
-    val location: String,
-    val salary: String
-)
 
 data class RegisterResponse(
     val status: String,
@@ -51,17 +43,6 @@ data class User(
     val full_name: String,
     val email: String,
     val created_at: String
-)
-
-data class LoginRequest(
-    val email: String,
-    val password: String
-)
-
-data class LoginResponse(
-    val status: String,
-    val message: String,
-    val data: UserData
 )
 
 data class UpdateAboutRequest(
@@ -88,11 +69,6 @@ data class UpdateResponse(
     val message: String
 )
 
-data class JobListResponse(
-    val status: String,
-    val data: List<Job>
-)
-
 data class ApplyJobResponse(
     val status: String,
     val message: String
@@ -115,7 +91,6 @@ interface ApiService {
 
     @POST("/api/auth/login")
     fun loginUser(@Body loginRequest: LoginRequest): Call<LoginResponse>
-    // New Endpoints
 
     @GET("/api/auth/profile")
     fun getUserProfile(@Header("Authorization") token: String): Call<UserProfileResponse>
