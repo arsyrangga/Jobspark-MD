@@ -1,0 +1,94 @@
+package com.dicoding.jobspark.ui.activity
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.dicoding.jobspark.R
+import com.dicoding.jobspark.data.remote.JobDetailResponse
+import com.dicoding.jobspark.data.remote.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class JobDescriptionActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.description_job)
+
+        val jobId = intent.getIntExtra("job_id", -1)
+        if (jobId == -1) {
+            Toast.makeText(this, "Job ID not found", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        fetchJobDetails(jobId)
+
+        // Handle back button click
+        val backButton: ImageView = findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+            onBackPressed()  // Navigates back to the previous activity
+        }
+
+        // Handle apply button click
+        val applyButton: Button = findViewById(R.id.apply_button)
+        applyButton.setOnClickListener {
+            // Navigate to UploadActivity
+            val intent = Intent(this, UploadActivity::class.java)
+            intent.putExtra("job_id", jobId)
+            intent.putExtra("job_name", intent.getStringExtra("job_name"))
+            intent.putExtra("company_name", intent.getStringExtra("company_name"))
+            startActivity(intent)
+        }
+    }
+
+    private fun fetchJobDetails(jobId: Int) {
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        val token = sharedPreferences.getString("TOKEN", "")
+
+        if (token.isNullOrEmpty()) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        RetrofitClient.instance.getJobDetail("Bearer $token", jobId)
+            .enqueue(object : Callback<JobDetailResponse> {
+                override fun onResponse(call: Call<JobDetailResponse>, response: Response<JobDetailResponse>) {
+                    if (response.isSuccessful) {
+                        val jobDetails = response.body()?.data
+                        jobDetails?.let {
+                            // Populate UI with job details
+                            findViewById<TextView>(R.id.job_title).text = it.jobName
+                            findViewById<TextView>(R.id.company_name).text = it.companyName
+                            findViewById<TextView>(R.id.job_location).text = it.location
+                            findViewById<TextView>(R.id.job_salary).text = it.salary
+                            findViewById<TextView>(R.id.job_description).text = it.jobDescription
+                            findViewById<TextView>(R.id.job_qualification).text = it.qualification
+                            findViewById<TextView>(R.id.min_experience).text = it.minExperience
+                            findViewById<TextView>(R.id.job_type).text = it.jobType
+
+                            // Load image using Glide
+                            val jobImageView: ImageView = findViewById(R.id.job_image)
+                            val imageUrl = "https://your_image_base_url/${it.image}" // Replace with your base URL
+                            Glide.with(this@JobDescriptionActivity)
+                                .load(imageUrl)
+                                .placeholder(R.drawable.placeholder_image)
+                                .into(jobImageView)
+                        }
+                    } else {
+                        Toast.makeText(this@JobDescriptionActivity, "Failed to fetch job details", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<JobDetailResponse>, t: Throwable) {
+                    Toast.makeText(this@JobDescriptionActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+}

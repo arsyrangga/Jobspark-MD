@@ -23,63 +23,24 @@
         android:src="@drawable/logo_dicoding" />
 
     <TextView
+        android:id="@+id/job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/dm_sans_reguler"
-        android:text="UI/UX Designer"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="Job Title"
         android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="16sp" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="4dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Dicoding"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text=" | "
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Bandung"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text=" | "
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="1 hari lalu"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-    </LinearLayout>
+        android:fontFamily="@font/dm_sans_reguler"
+        android:text="Company Name"
+        android:textColor="#000000"
+        android:textSize="14sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -101,6 +62,7 @@
         android:textSize="12sp" />
 
     <LinearLayout
+        android:id="@+id/upload_cv_button_container"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/dashed_border"
@@ -121,6 +83,44 @@
             android:text="Upload CV/Resume"
             android:textColor="#000000"
             android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_upload_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="PDF Icon"
+            android:src="@drawable/ic_pdf_icon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_reguler"
+                android:text="No file selected"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/delete_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_delete" />
+        </LinearLayout>
     </LinearLayout>
 
     <Space

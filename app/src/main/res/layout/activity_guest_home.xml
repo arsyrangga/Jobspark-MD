@@ -99,5 +99,6 @@
             android:clipToPadding="false"
             android:paddingBottom="80dp"
             tools:listitem="@layout/item_job_card" />
+
     </ScrollView>
 </RelativeLayout>
