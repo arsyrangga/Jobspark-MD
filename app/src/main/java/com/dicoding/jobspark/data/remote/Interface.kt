@@ -11,81 +11,8 @@ import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Query
 
-data class RegisterRequest(
-    val full_name: String,
-    val email: String,
-    val password: String,
-    val about_me: String,
-    val birth_date: String,
-    val gender: String,
-    val address: String,
-    val emergency_number: String,
-    val profile_img: String,
-    val hobby: String,
-    val interest: String,
-    val special_ability: String,
-    val health_condition: String
-)
-
-data class RegisterResponse(
-    val status: String,
-    val message: String,
-    val data: UserData
-)
-
-data class UserData(
-    val token: String,
-    val user: User
-)
-
-data class User(
-    val id: Int,
-    val full_name: String,
-    val email: String,
-    val created_at: String
-)
-
-data class UpdateAboutRequest(
-    val about_me: String
-)
-
-data class UpdatePasswordRequest(
-    val old_password: String,
-    val new_password: String
-)
-
-data class ApplyJobRequest(
-    val jobs_id: Int,
-    val resume_id: Int
-)
-
-data class UserProfileResponse(
-    val status: String,
-    val data: User
-)
-
-data class UpdateResponse(
-    val status: String,
-    val message: String
-)
-
-data class ApplyJobResponse(
-    val status: String,
-    val message: String
-)
-
-data class UploadResponse(
-    val status: String,
-    val message: String
-)
-
-data class Hobby(
-    val id: Int,
-    val name: String
-)
-
-
 interface ApiService {
+
     @POST("/api/auth/register")
     fun registerUser(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
 
@@ -110,12 +37,14 @@ interface ApiService {
     @GET("/api/hobby")
     fun getHobbies(@Header("Authorization") token: String): Call<List<Hobby>>
 
+
     @GET("/api/jobs")
     fun getJobs(
-        @Header("Authorization") token: String,
+        @Header("Authorization") token: String? = null,
         @Query("page") page: Int,
         @Query("limit") limit: Int
     ): Call<JobListResponse>
+
 
     @POST("/api/jobs/apply")
     fun applyJob(
@@ -129,4 +58,5 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part
     ): Call<UploadResponse>
+
 }
