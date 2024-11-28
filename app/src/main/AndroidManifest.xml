@@ -36,6 +36,8 @@
         <activity android:name=".ui.activity.VerificationActivity" />
         <activity android:name=".ui.activity.InterestActivity" />
         <activity android:name=".ui.activity.SavedActivity" />
+        <activity android:name=".ui.activity.UploadActivity" />
+        <activity android:name=".ui.activity.JobDescriptionActivity" />
         <activity android:name=".ui.activity.DetailHistoryActivity" />
         <activity android:name=".ui.activity.CompleteProfileActivity" />
         <activity

@@ -45,6 +45,11 @@ interface ApiService {
         @Query("limit") limit: Int
     ): Call<JobListResponse>
 
+    @GET("/api/jobs/{id}")
+    fun getJobDetail(
+        @Header("Authorization") token: String,
+        @retrofit2.http.Path("id") jobId: Int
+    ): Call<JobDetailResponse>
 
     @POST("/api/jobs/apply")
     fun applyJob(

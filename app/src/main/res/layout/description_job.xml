@@ -9,14 +9,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Back Button -->
         <ImageView
+            android:id="@+id/back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="start"
             android:contentDescription="Back"
             android:src="@drawable/ic_back" />
 
+        <!-- Job Image -->
         <ImageView
+            android:id="@+id/job_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
@@ -24,7 +28,9 @@
             android:padding="16dp"
             android:src="@drawable/logo_dicoding" />
 
+        <!-- Job Title -->
         <TextView
+            android:id="@+id/job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,6 +41,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <!-- Company, Location, and Time -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,6 +50,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
@@ -59,6 +67,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/job_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
@@ -75,6 +84,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/created_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
@@ -83,7 +93,9 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <!-- Job Description -->
         <TextView
+            android:id="@+id/job_description_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -93,133 +105,94 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/job_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem"
+            android:text="Job Description will be displayed here."
             android:textColor="#444444"
             android:textSize="12sp" />
 
+        <!-- Job Qualification -->
         <TextView
+            android:id="@+id/job_qualification_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Ketentuan"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="• Sed ut perspiciatis unde omnis iste natus error sit.\n\n• Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.\n\n• Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.\n\n• Ut enim ad minima veniam..."
-            android:textColor="#000000"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/dm_sans_bold"
-            android:text="Lokasi"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Jalan Braga, Bandung"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/dm_sans_bold"
-            android:text="Informasi"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Posisi"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Senior Designer"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
             android:text="Kualifikasi"
             android:textColor="#000000"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/job_qualification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Sarjana"
+            android:text="Qualification details here."
+            android:textColor="#000000"
+            android:textSize="12sp" />
+        <!-- Experience -->
+        <TextView
+            android:id="@+id/min_experience_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="Pengalaman Minimal"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/min_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans_reguler"
+            android:text="1-2 tahun"
             android:textColor="#000000"
             android:textSize="12sp" />
 
+        <!-- Job Type -->
         <TextView
+            android:id="@+id/job_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="Minimal Pengalaman"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="3 tahun"
-            android:textColor="#000000"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/dm_sans_reguler"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/dm_sans_bold"
             android:text="Tipe Pekerjaan"
             android:textColor="#000000"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/job_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Full-Time"
+            android:text="Full Time"
+            android:textColor="#000000"
+            android:textSize="12sp" />
+        <!-- Job Salary -->
+        <TextView
+            android:id="@+id/job_salary_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="Gaji"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/job_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.000.000 - 5.000.000"
             android:textColor="#000000"
             android:textSize="12sp" />
 
+        <!-- Apply Button -->
         <Button
+            android:id="@+id/apply_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
