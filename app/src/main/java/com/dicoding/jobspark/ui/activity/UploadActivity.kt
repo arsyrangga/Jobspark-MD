@@ -79,7 +79,7 @@ class UploadActivity : AppCompatActivity() {
 
     private fun openFilePicker() {
         val selectFileIntent = Intent(Intent.ACTION_GET_CONTENT)
-        selectFileIntent.type = "application/pdf"  // Limit to PDF files
+        selectFileIntent.type = "application/pdf"
         startActivityForResult(selectFileIntent, REQUEST_CODE_PICK_FILE)
     }
 
@@ -88,7 +88,7 @@ class UploadActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_PICK_FILE && resultCode == RESULT_OK) {
             data?.data?.let { uri ->
                 selectedFilePath = getFilePath(uri)
-                selectedFileName = uri.lastPathSegment?.substringAfterLast("/")  // Get file name
+                selectedFileName = uri.lastPathSegment?.substringAfterLast("/")
                 updateUIAfterFileSelected()
             }
         }

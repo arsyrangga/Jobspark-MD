@@ -30,16 +30,13 @@ class JobDescriptionActivity : AppCompatActivity() {
 
         fetchJobDetails(jobId)
 
-        // Handle back button click
         val backButton: ImageView = findViewById(R.id.back_button)
         backButton.setOnClickListener {
-            onBackPressed()  // Navigates back to the previous activity
+            onBackPressedDispatcher.onBackPressed()
         }
 
-        // Handle apply button click
         val applyButton: Button = findViewById(R.id.apply_button)
         applyButton.setOnClickListener {
-            // Navigate to UploadActivity
             val intent = Intent(this, UploadActivity::class.java)
             intent.putExtra("job_id", jobId)
             intent.putExtra("job_name", intent.getStringExtra("job_name"))
@@ -59,11 +56,13 @@ class JobDescriptionActivity : AppCompatActivity() {
 
         RetrofitClient.instance.getJobDetail("Bearer $token", jobId)
             .enqueue(object : Callback<JobDetailResponse> {
-                override fun onResponse(call: Call<JobDetailResponse>, response: Response<JobDetailResponse>) {
+                override fun onResponse(
+                    call: Call<JobDetailResponse>,
+                    response: Response<JobDetailResponse>
+                ) {
                     if (response.isSuccessful) {
                         val jobDetails = response.body()?.data
                         jobDetails?.let {
-                            // Populate UI with job details
                             findViewById<TextView>(R.id.job_title).text = it.jobName
                             findViewById<TextView>(R.id.company_name).text = it.companyName
                             findViewById<TextView>(R.id.job_location).text = it.location
@@ -73,21 +72,28 @@ class JobDescriptionActivity : AppCompatActivity() {
                             findViewById<TextView>(R.id.min_experience).text = it.minExperience
                             findViewById<TextView>(R.id.job_type).text = it.jobType
 
-                            // Load image using Glide
                             val jobImageView: ImageView = findViewById(R.id.job_image)
-                            val imageUrl = "https://your_image_base_url/${it.image}" // Replace with your base URL
+                            val imageUrl = "https://your_image_base_url/${it.image}"
                             Glide.with(this@JobDescriptionActivity)
                                 .load(imageUrl)
                                 .placeholder(R.drawable.placeholder_image)
                                 .into(jobImageView)
                         }
                     } else {
-                        Toast.makeText(this@JobDescriptionActivity, "Failed to fetch job details", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@JobDescriptionActivity,
+                            "Failed to fetch job details",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
                 override fun onFailure(call: Call<JobDetailResponse>, t: Throwable) {
-                    Toast.makeText(this@JobDescriptionActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@JobDescriptionActivity,
+                        "Network error: ${t.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
     }
