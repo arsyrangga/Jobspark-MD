@@ -83,6 +83,24 @@ data class UploadResponse(
     val status: String,
     val message: String
 )
+data class JobHistory(
+    val id: Int,
+    val jobTitle: String,
+    val companyName: String,
+    val status: String
+)
+data class JobHistoryDetail(
+    val id: Int,
+    val jobTitle: String,
+    val companyName: String,
+    val status: String,
+    val description: String,
+    val dateApplied: String
+)
+
+data class SaveJobRequest(val jobs_id: String)
+
+data class DeleteJobRequest(val id: String)
 
 data class Pagination(
     val total_data: Int,

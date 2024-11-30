@@ -34,6 +34,6 @@ class VerificationActivity : AppCompatActivity() {
             }
             startActivity(intent)
             finish()
-        }, 2000)  // Simulating face detection with a 2-second delay
+        }, 2000)
     }
 }
