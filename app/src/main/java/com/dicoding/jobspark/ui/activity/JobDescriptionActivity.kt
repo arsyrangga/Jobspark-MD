@@ -73,7 +73,9 @@ class JobDescriptionActivity : AppCompatActivity() {
                             findViewById<TextView>(R.id.job_type).text = it.jobType
 
                             val jobImageView: ImageView = findViewById(R.id.job_image)
-                            val imageUrl = "https://your_image_base_url/${it.image}"
+
+                            val imageUrl = it.image
+
                             Glide.with(this@JobDescriptionActivity)
                                 .load(imageUrl)
                                 .placeholder(R.drawable.placeholder_image)
@@ -97,4 +99,6 @@ class JobDescriptionActivity : AppCompatActivity() {
                 }
             })
     }
+
+
 }

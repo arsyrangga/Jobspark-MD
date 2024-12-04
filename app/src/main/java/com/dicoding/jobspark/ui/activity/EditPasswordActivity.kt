@@ -5,13 +5,14 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
+import com.dicoding.jobspark.ui.viewmodel.EditPasswordViewModel
 
 class EditPasswordActivity : AppCompatActivity() {
-    private var isOldPasswordVisible = false
-    private var isNewPasswordVisible = false
-    private var isConfirmPasswordVisible = false
+
+    private val viewModel: EditPasswordViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,37 +30,47 @@ class EditPasswordActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+
+        viewModel.isOldPasswordVisible.observe(this) { isVisible ->
+            updatePasswordVisibility(oldPasswordEditText, oldPasswordToggle, isVisible)
+        }
+
         oldPasswordToggle.setOnClickListener {
-            togglePasswordVisibility(oldPasswordEditText, oldPasswordToggle, ::isOldPasswordVisible)
-            isOldPasswordVisible = !isOldPasswordVisible
+            viewModel.toggleOldPasswordVisibility()
         }
+
+        viewModel.isNewPasswordVisible.observe(this) { isVisible ->
+            updatePasswordVisibility(newPasswordEditText, newPasswordToggle, isVisible)
+        }
+
         newPasswordToggle.setOnClickListener {
-            togglePasswordVisibility(newPasswordEditText, newPasswordToggle, ::isNewPasswordVisible)
-            isNewPasswordVisible = !isNewPasswordVisible
+            viewModel.toggleNewPasswordVisibility()
         }
+
+        viewModel.isConfirmPasswordVisible.observe(this) { isVisible ->
+            updatePasswordVisibility(confirmPasswordEditText, confirmPasswordToggle, isVisible)
+        }
+
         confirmPasswordToggle.setOnClickListener {
-            togglePasswordVisibility(
-                confirmPasswordEditText,
-                confirmPasswordToggle,
-                ::isConfirmPasswordVisible
-            )
-            isConfirmPasswordVisible = !isConfirmPasswordVisible
+            viewModel.toggleConfirmPasswordVisibility()
         }
+
         updateButton.setOnClickListener {
+            // Implement update password logic
         }
     }
 
-    private fun togglePasswordVisibility(
+    private fun updatePasswordVisibility(
         editText: EditText,
         toggleButton: ImageView,
-        isVisible: () -> Boolean
+        isVisible: Boolean
     ) {
-        if (isVisible()) {
-            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            toggleButton.setImageResource(R.drawable.ic_visibility_off)
-        } else {
+        if (isVisible) {
             editText.inputType = InputType.TYPE_CLASS_TEXT
             toggleButton.setImageResource(R.drawable.ic_visibility)
+        } else {
+            editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            toggleButton.setImageResource(R.drawable.ic_visibility_off)
         }
         editText.setSelection(editText.text.length)
     }

@@ -3,13 +3,10 @@ package com.dicoding.jobspark.ui.activity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
-import com.dicoding.jobspark.data.remote.JobHistoryDetail
-import com.dicoding.jobspark.data.remote.RetrofitClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.dicoding.jobspark.ui.viewmodel.DetailHistoryViewModel
 
 class DetailHistoryActivity : AppCompatActivity() {
 
@@ -18,6 +15,8 @@ class DetailHistoryActivity : AppCompatActivity() {
     private lateinit var statusText: TextView
     private lateinit var descriptionText: TextView
     private lateinit var dateAppliedText: TextView
+
+    private val viewModel: DetailHistoryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,43 +31,24 @@ class DetailHistoryActivity : AppCompatActivity() {
         val jobHistoryId = intent.getIntExtra("jobHistoryId", -1)
 
         if (jobHistoryId != -1) {
-            fetchJobHistoryDetail(jobHistoryId)
+            viewModel.fetchJobHistoryDetail(jobHistoryId)
+            observeViewModel()
         } else {
             Toast.makeText(this, "Invalid Job History ID", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun fetchJobHistoryDetail(id: Int) {
-        val apiService = RetrofitClient.instance
-        apiService.getJobHistoryDetail(id).enqueue(object : Callback<JobHistoryDetail> {
-            override fun onResponse(
-                call: Call<JobHistoryDetail>,
-                response: Response<JobHistoryDetail>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let { jobHistoryDetail ->
-                        jobTitleText.text = jobHistoryDetail.jobTitle
-                        companyNameText.text = jobHistoryDetail.companyName
-                        statusText.text = jobHistoryDetail.status
-                        descriptionText.text = jobHistoryDetail.description
-                        dateAppliedText.text = jobHistoryDetail.dateApplied
-                    }
-                } else {
-                    Toast.makeText(
-                        this@DetailHistoryActivity,
-                        "Failed to load details",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+    private fun observeViewModel() {
+        viewModel.jobHistoryDetail.observe(this) { jobHistoryDetail ->
+            jobTitleText.text = jobHistoryDetail.jobTitle
+            companyNameText.text = jobHistoryDetail.companyName
+            statusText.text = jobHistoryDetail.status
+            descriptionText.text = jobHistoryDetail.description
+            dateAppliedText.text = jobHistoryDetail.dateApplied
+        }
 
-            override fun onFailure(call: Call<JobHistoryDetail>, t: Throwable) {
-                Toast.makeText(
-                    this@DetailHistoryActivity,
-                    "Error: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+        viewModel.errorMessage.observe(this) { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
     }
 }
