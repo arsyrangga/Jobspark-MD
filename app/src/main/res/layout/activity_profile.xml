@@ -26,7 +26,7 @@
             android:id="@+id/profileImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
             android:src="@drawable/profile_picture" />
 
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/profileImage"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/dm_sans_bold"
             android:text="Brandon"
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/profileName"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/dm_sans_reguler"
             android:text="Yogyakarta, ID"
             android:textColor="#FFFFFF"

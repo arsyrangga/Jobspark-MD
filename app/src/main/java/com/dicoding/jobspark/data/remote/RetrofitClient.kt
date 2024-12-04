@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "https://jobspark-api-299853389560.asia-southeast2.run.app"
+    private const val BASE_URL = "https://jobspark-api-299853389560.asia-southeast2.run.app/api/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

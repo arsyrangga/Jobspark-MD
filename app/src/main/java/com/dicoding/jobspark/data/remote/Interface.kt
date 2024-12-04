@@ -2,7 +2,6 @@ package com.dicoding.jobspark.data.remote
 
 import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -84,4 +83,10 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("jobId") jobId: Int
     ): Call<Void>
+
+    @GET("jobs")
+    fun getJobsWithoutToken(
+        @Query("page") page: Int,
+        @Query("limit") limit: Int
+    ): Call<JobListResponse>
 }

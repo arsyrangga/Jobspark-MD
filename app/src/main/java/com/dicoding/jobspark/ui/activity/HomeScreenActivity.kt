@@ -20,7 +20,6 @@ class HomeScreenActivity : AppCompatActivity() {
     private lateinit var recyclerViewJobs: RecyclerView
     private lateinit var jobAdapter: JobAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -87,7 +86,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val jobListResponse = response.body()
                         if (jobListResponse != null && jobListResponse.data.isNotEmpty()) {
-                            jobAdapter = JobAdapter(jobListResponse.data)
+                            jobAdapter = JobAdapter(jobListResponse.data, isSimplified = false)
                             recyclerViewJobs.adapter = jobAdapter
                         } else {
                             Toast.makeText(
@@ -114,5 +113,4 @@ class HomeScreenActivity : AppCompatActivity() {
                 }
             })
     }
-
 }

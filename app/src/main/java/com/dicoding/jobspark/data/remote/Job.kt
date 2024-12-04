@@ -83,12 +83,14 @@ data class UploadResponse(
     val status: String,
     val message: String
 )
+
 data class JobHistory(
     val id: Int,
     val jobTitle: String,
     val companyName: String,
     val status: String
 )
+
 data class JobHistoryDetail(
     val id: Int,
     val jobTitle: String,
@@ -97,6 +99,7 @@ data class JobHistoryDetail(
     val description: String,
     val dateApplied: String
 )
+
 
 data class SaveJobRequest(val jobs_id: String)
 

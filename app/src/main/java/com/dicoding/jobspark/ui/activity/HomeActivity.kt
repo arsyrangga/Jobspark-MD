@@ -2,7 +2,6 @@ package com.dicoding.jobspark.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,54 +23,47 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guest_home)
+
         findViewById<TextView>(R.id.login_link).setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         recyclerViewJobs = findViewById(R.id.recyclerView_jobs)
         recyclerViewJobs.layoutManager = LinearLayoutManager(this)
 
+        jobAdapter = JobAdapter(emptyList(), isSimplified = true)
+        recyclerViewJobs.adapter = jobAdapter
+
         fetchJobs()
     }
 
     private fun fetchJobs() {
-        RetrofitClient.instance.getJobs("",1, 10)
-            .enqueue(object : Callback<JobListResponse> {
-                override fun onResponse(
-                    call: Call<JobListResponse>,
-                    response: Response<JobListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val jobListResponse = response.body()
-                        Log.d("API_RESPONSE", jobListResponse.toString())
-                        if (jobListResponse != null && jobListResponse.data.isNotEmpty()) {
-                            jobAdapter = JobAdapter(jobListResponse.data)
-                            recyclerViewJobs.adapter = jobAdapter
-                        } else {
-                            Toast.makeText(
-                                this@HomeActivity,
-                                "No jobs found",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+        val call = RetrofitClient.instance.getJobsWithoutToken(page = 1, limit = 10)
+
+        call.enqueue(object : Callback<JobListResponse> {
+            override fun onResponse(
+                call: Call<JobListResponse>,
+                response: Response<JobListResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val jobListResponse = response.body()
+                    if (jobListResponse != null && jobListResponse.data.isNotEmpty()) {
+                        jobAdapter.updateData(jobListResponse.data)
                     } else {
-                        Toast.makeText(
-                            this@HomeActivity,
-                            "Failed to fetch jobs",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@HomeActivity, "No jobs found", Toast.LENGTH_SHORT)
+                            .show()
                     }
+                } else {
+                    Toast.makeText(this@HomeActivity, "Failed to fetch jobs", Toast.LENGTH_SHORT)
+                        .show()
                 }
+            }
 
-                override fun onFailure(call: Call<JobListResponse>, t: Throwable) {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        "Network error: ${t.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
+            override fun onFailure(call: Call<JobListResponse>, t: Throwable) {
+                Toast.makeText(this@HomeActivity, "Network error: ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
-
 }
+

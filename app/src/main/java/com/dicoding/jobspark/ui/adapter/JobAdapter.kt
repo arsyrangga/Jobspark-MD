@@ -1,10 +1,10 @@
 package com.dicoding.jobspark.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,29 +13,39 @@ import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.Job
 import com.dicoding.jobspark.ui.activity.JobDescriptionActivity
 
-class JobAdapter(private val jobs: List<Job>) : RecyclerView.Adapter<JobAdapter.JobViewHolder>() {
+class JobAdapter(private var jobs: List<Job>, private val isSimplified: Boolean) :
+    RecyclerView.Adapter<JobAdapter.JobViewHolder>() {
 
     inner class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.job_title)
         val company: TextView = itemView.findViewById(R.id.company_location)
         val salary: TextView = itemView.findViewById(R.id.salary)
-        val jobType: Button = itemView.findViewById(R.id.job_type_button)
+        val jobType: TextView? =
+            itemView.findViewById(R.id.job_type)
         val jobIcon: ImageView = itemView.findViewById(R.id.job_icon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_job_card, parent, false)
+        val layoutRes = if (isSimplified) {
+            R.layout.item_job_card_simplified
+        } else {
+            R.layout.item_job_card
+        }
+
+        val view = LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
         return JobViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: JobViewHolder, position: Int) {
         val job = jobs[position]
-
         holder.title.text = job.job_name
         holder.company.text = "${job.company_name} • ${job.location}"
         holder.salary.text = job.salary
-        holder.jobType.text = job.job_type
+
+        if (!isSimplified) {
+            holder.jobType?.text = job.job_type
+        }
 
         Glide.with(holder.itemView.context)
             .load(job.image)
@@ -44,24 +54,21 @@ class JobAdapter(private val jobs: List<Job>) : RecyclerView.Adapter<JobAdapter.
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, JobDescriptionActivity::class.java)
-            intent.putExtra("job_id", job.id)
-            intent.putExtra("job_name", job.job_name)
-            intent.putExtra("company_name", job.company_name)
-            intent.putExtra("location", job.location)
-            intent.putExtra("salary", job.salary)
-            intent.putExtra("job_description", job.job_description)
-            intent.putExtra("job_type", job.job_type)
-            intent.putExtra("position", job.position)
-            intent.putExtra("qualification", job.qualification)
-            intent.putExtra("min_experience", job.min_experience)
-            Glide.with(holder.itemView.context)
-                .load(job.image)
-                .placeholder(R.drawable.placeholder_image)
-                .into(holder.jobIcon)
+            val intent = Intent(context, JobDescriptionActivity::class.java).apply {
+                putExtra("job_id", job.id)
+                putExtra("job_name", job.job_name)
+            }
             context.startActivity(intent)
         }
     }
 
-    override fun getItemCount() = jobs.size
+    override fun getItemCount(): Int {
+        return jobs.size
+    }
+
+    fun updateData(newJobs: List<Job>) {
+        jobs = newJobs
+        notifyDataSetChanged()
+    }
 }
+
