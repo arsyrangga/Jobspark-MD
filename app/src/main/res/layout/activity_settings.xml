@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/dm_sans_bold"
         android:text="@string/pengaturan"
         android:textColor="#1F1F39"
@@ -35,11 +35,13 @@
         android:id="@+id/reminderLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:background="@drawable/rounded_edittext"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTextView">
 

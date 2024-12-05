@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
@@ -20,6 +21,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:background="@drawable/circle_background"
+        android:contentDescription="@string/logo"
         android:padding="16dp"
         android:src="@drawable/logo_dicoding" />
 
@@ -53,9 +55,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/divider"
+            android:text=" | "
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,9 +72,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/divider"
+            android:text=" | "
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
                 android:text="@string/_867_kb_14_feb_2024_at_11_30_am"
-                android:textColor="#888888"
+                android:textColor="#546E7A"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
@@ -127,6 +131,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/success"
         android:src="@drawable/ic_success_icon" />
 
     <TextView

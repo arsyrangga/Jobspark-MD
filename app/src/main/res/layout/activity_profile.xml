@@ -126,7 +126,7 @@
                     android:fontFamily="@font/dm_sans_reguler"
                     android:text="@string/saya_adalah_seorang_profesional_yang_bersemangat_dengan_pengalaman_di_industri_teknologi_dan_manajemen"
                     android:textColor="#777777"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/editIconAbout"
@@ -230,7 +230,7 @@
                     android:fontFamily="@font/dm_sans_reguler"
                     android:text="@string/amazon_id"
                     android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/jobDuration"
@@ -241,7 +241,7 @@
                     android:fontFamily="@font/dm_sans_reguler"
                     android:text="@string/jan_2015_feb_2022_5_tahun"
                     android:textColor="#777777"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

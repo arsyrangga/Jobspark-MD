@@ -33,10 +33,9 @@
     <string name="password_baru_sekali_lagi">Password baru sekali lagi</string>
     <string name="perbarui">PERBARUI</string>
     <string name="back">Back</string>
-    <string name="dicoding">Dicoding</string>
-    <string name="divider">|</string>
-    <string name="bandung">Bandung</string>
-    <string name="_1_hari_lalu">1 hari lalu</string>
+    <string name="dicoding"> Dicoding </string>
+    <string name="bandung"> Bandung </string>
+    <string name="_1_hari_lalu"> 1 hari lalu </string>
     <string name="brandon_cv_ui_ux_designer">Brandon - CV - UI/UX Designer</string>
     <string name="berhasil">Berhasil</string>
     <string name="selamat_lamaran_anda_berhasil_terkirim">Selamat, lamaran anda berhasil terkirim!</string>
@@ -128,4 +127,6 @@
     <string name="date_applied">Date Applied</string>
     <string name="end_date_icon">End datce Icon</string>
     <string name="button_back">Button back</string>
+    <string name="success">Success</string>
+    <string name="logo">Logo</string>
 </resources>

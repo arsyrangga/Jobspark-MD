@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-
     <ImageView
         android:id="@+id/successIcon"
         android:layout_width="292dp"
         android:layout_height="278dp"
-        android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="176dp"
         android:src="@drawable/success" />
 
     <Button
@@ -20,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/successIcon"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="#72D96B"
         android:text="@string/next"

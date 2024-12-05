@@ -28,8 +28,14 @@ class InterestActivity : AppCompatActivity() {
         val birthDate = intent.getStringExtra("birth_date")
         val gender = intent.getStringExtra("gender")
         val address = intent.getStringExtra("address")
-        val emergencyContact =
-            intent.getStringExtra("emergency_contact")
+        val emergencyContact = intent.getStringExtra("emergency_contact")
+
+        Log.d(
+            "InterestActivity",
+            "Email: $email, Full Name: $fullName, Gender: $gender, Address: $address, Emergency Contact: $emergencyContact"
+        )
+
+        val capturedImageUrl = intent.getStringExtra("captured_image_url") ?: "default-profile-url"
 
         val hobbySpinner = findViewById<Spinner>(R.id.hobbySpinner)
         val specialSkillSpinner = findViewById<Spinner>(R.id.specialSkillSpinner)
@@ -80,15 +86,28 @@ class InterestActivity : AppCompatActivity() {
             val specialSkill = specialSkillSpinner.selectedItem.toString()
             val healthCondition = healthConditionSpinner.selectedItem.toString()
 
+            Log.d(
+                "InterestActivity",
+                "Hobby: $hobby, Special Skill: $specialSkill, Health Condition: $healthCondition"
+            )
+
             if (hobby.isNotEmpty() && specialSkill.isNotEmpty() && healthCondition.isNotEmpty() &&
-                address != null && emergencyContact != null
+                address != null && emergencyContact != null &&
+                email != null && password != null && fullName != null && birthDate != null && gender != null
             ) {
-                if (email != null && password != null && fullName != null && birthDate != null && gender != null) {
-                    registerUser(
-                        email, password, fullName, birthDate, gender,
-                        hobby, specialSkill, healthCondition, address, emergencyContact
-                    )
-                }
+                registerUser(
+                    email,
+                    password,
+                    fullName,
+                    birthDate,
+                    gender,
+                    hobby,
+                    specialSkill,
+                    healthCondition,
+                    address,
+                    emergencyContact,
+                    capturedImageUrl
+                )
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -105,7 +124,8 @@ class InterestActivity : AppCompatActivity() {
         specialSkill: String,
         healthCondition: String,
         address: String,
-        emergencyContact: String
+        emergencyContact: String,
+        capturedImageUrl: String
     ) {
         val registerRequest = RegisterRequest(
             full_name = fullName,
@@ -116,7 +136,7 @@ class InterestActivity : AppCompatActivity() {
             gender = gender,
             address = address,
             emergency_number = emergencyContact,
-            profile_img = "https://example.com/profile.jpg",
+            profile_img = capturedImageUrl,
             hobby = hobby,
             interest = specialSkill,
             special_ability = specialSkill,
@@ -132,10 +152,6 @@ class InterestActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val registerResponse = response.body()
                         if (registerResponse != null) {
-                            Log.d(
-                                "Register",
-                                "Registration successful: ${registerResponse.message}"
-                            )
                             Toast.makeText(
                                 this@InterestActivity,
                                 "Registration successful: ${registerResponse.message}",
@@ -145,19 +161,7 @@ class InterestActivity : AppCompatActivity() {
                             val intent = Intent(this@InterestActivity, LoginActivity::class.java)
                             startActivity(intent)
                             finish()
-                        } else {
-                            Toast.makeText(
-                                this@InterestActivity,
-                                "Received empty response body",
-                                Toast.LENGTH_SHORT
-                            ).show()
                         }
-                    } else {
-                        Toast.makeText(
-                            this@InterestActivity,
-                            "Registration failed: ${response.errorBody()?.string()}",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
                 }
 

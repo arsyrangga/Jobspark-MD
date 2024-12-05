@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAFAFA"
@@ -53,15 +54,16 @@
                 android:fontFamily="@font/dm_sans_reguler"
                 android:text="@string/dicoding"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="@string/divider"
+                android:text=" | "
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/job_location"
@@ -70,15 +72,16 @@
                 android:fontFamily="@font/dm_sans_reguler"
                 android:text="@string/bandung"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="@string/divider"
+                android:text=" | "
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="12sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/created_at"
@@ -87,7 +90,7 @@
                 android:fontFamily="@font/dm_sans_reguler"
                 android:text="@string/_1_hari_lalu"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <TextView

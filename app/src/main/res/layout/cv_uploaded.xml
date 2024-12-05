@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/divider"
+            android:text=" | "
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/divider"
+            android:text=" | "
             android:textColor="#000000"
             android:textSize="16sp" />
 

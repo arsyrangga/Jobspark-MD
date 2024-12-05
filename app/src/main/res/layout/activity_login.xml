@@ -48,7 +48,8 @@
         app:layout_constraintTop_toBottomOf="@id/emailLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:inputType="textEmailAddress"/>
 
     <TextView
         android:id="@+id/passwordLabel"
@@ -65,6 +66,7 @@
         android:layout_marginBottom="8dp"/>
 
     <RelativeLayout
+        android:id="@+id/passwordRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/passwordLabel">
@@ -96,19 +98,18 @@
         android:id="@+id/rememberMeCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="324dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/dm_sans_reguler"
         android:text="@string/ingat_aku"
         android:textColor="#1F1F39"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@id/passwordRelativeLayout"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/forgotPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/dm_sans_reguler"
         android:text="@string/lupa_password"
@@ -127,6 +128,7 @@
         app:layout_constraintTop_toBottomOf="@id/rememberMeCheckBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="24dp"/>
 
     <LinearLayout
@@ -149,10 +151,12 @@
             android:id="@+id/regbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_reguler"
+            android:layout_marginStart="-8dp"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/dm_sans_reguler"
             android:text="@string/daftar"
-            android:textColor="#1F76D3" />
+            android:textColor="#1F76D3"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

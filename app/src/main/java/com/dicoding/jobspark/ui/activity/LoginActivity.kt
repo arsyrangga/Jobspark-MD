@@ -3,8 +3,8 @@ package com.dicoding.jobspark.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
@@ -13,6 +13,7 @@ import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.LoginRequest
 import com.dicoding.jobspark.data.remote.LoginResponse
 import com.dicoding.jobspark.data.remote.RetrofitClient
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,30 +25,30 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val loginButton: Button = findViewById(R.id.loginButton)
-        val registerButton: Button = findViewById(R.id.regbutton)
         val emailEditText = findViewById<EditText>(R.id.emailLoginEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordLoginEditText)
-        val passwordToggle: ImageView = findViewById(R.id.passwordToggle)
+        val passwordToggle = findViewById<ImageView>(R.id.passwordToggle)
+        val loginButton = findViewById<Button>(R.id.loginButton)
+        val registerButton = findViewById<Button>(R.id.regbutton)
+        val rememberMeCheckbox = findViewById<CheckBox>(R.id.rememberMeCheckBox)
+
+        passwordToggle.setOnClickListener {
+            togglePasswordVisibility(passwordEditText, passwordToggle)
+        }
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                loginUser(email, password)
+                loginUser(email, password, rememberMeCheckbox.isChecked)
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
 
         registerButton.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
-        passwordToggle.setOnClickListener {
-            togglePasswordVisibility(passwordEditText, passwordToggle)
-        }
-
     }
 
     private fun togglePasswordVisibility(passwordEditText: EditText, passwordToggle: ImageView) {
@@ -63,45 +64,57 @@ class LoginActivity : AppCompatActivity() {
         isPasswordVisible = !isPasswordVisible
     }
 
-    private fun loginUser(email: String, password: String) {
+    private fun loginUser(email: String, password: String, rememberMe: Boolean) {
         val loginRequest = LoginRequest(email, password)
         RetrofitClient.instance.loginUser(loginRequest).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
-                    val loginResponse = response.body()
-                    val token = loginResponse?.data?.token
-
+                    val token = response.body()?.data?.token
                     if (token != null) {
-                        saveToken(token)
-                        Log.d("Login", "Token saved: $token")
-
-                        // Pindah ke HomeScreenActivity
-                        val intent = Intent(this@LoginActivity, HomeScreenActivity::class.java)
-                        startActivity(intent)
+                        saveUserSession(token, rememberMe)
+                        startActivity(Intent(this@LoginActivity, HomeScreenActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Token not received", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Invalid credentials",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
-                    Toast.makeText(this@LoginActivity, "Login failed", Toast.LENGTH_SHORT).show()
+                    val errorMessage = parseError(response)
+                    Toast.makeText(this@LoginActivity, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Log.d("Login", "Failure: ${t.message}")
-                Toast.makeText(this@LoginActivity, "Network error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Network error: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
 
-
-    private fun saveToken(token: String) {
+    private fun saveUserSession(token: String, rememberMe: Boolean) {
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putString("TOKEN", token)
-        editor.apply()
+        sharedPreferences.edit().apply {
+            putBoolean("IS_REMEMBERED", rememberMe)
+            if (rememberMe) {
+                putString("TOKEN", token)
+            }
+            apply()
+        }
     }
 
-
+    private fun parseError(response: Response<LoginResponse>): String {
+        return try {
+            val errorBody = response.errorBody()?.string()
+            val errorJson = JSONObject(errorBody ?: "{}")
+            errorJson.getString("message") ?: "Login failed"
+        } catch (e: Exception) {
+            "Login failed"
+        }
+    }
 }
