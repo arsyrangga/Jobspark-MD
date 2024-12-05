@@ -14,7 +14,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:fontFamily="@font/dm_sans_bold"
-        android:text="Riwayat"
+        android:text="@string/riwayat"
         android:textColor="#000000"
         android:textSize="24sp" />
 
@@ -37,6 +37,7 @@
         android:background="#FFFFFF"
         android:elevation="8dp"
         app:itemActiveIndicatorStyle="@style/Custom.Indicator"
-        app:menu="@menu/bottom_navigation_menu" />
+        app:menu="@menu/bottom_navigation_menu"
+        tools:ignore="VisualLintBottomNav" />
 
 </RelativeLayout>

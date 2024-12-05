@@ -8,7 +8,7 @@
         android:id="@+id/job_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Job Title"
+        android:text="@string/job_title"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -17,35 +17,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/job_title_text"
-        android:text="Company Name"
-        android:textSize="16sp"
-        android:textColor="#555555" />
+        android:text="@string/company_name"
+        android:textColor="#555555"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/status_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/company_name_text"
-        android:text="Status"
-        android:textSize="16sp"
-        android:textColor="#555555" />
+        android:text="@string/status"
+        android:textColor="#555555"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/description_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/status_text"
-        android:text="Description"
-        android:textSize="14sp"
-        android:textColor="#555555" />
+        android:text="@string/description"
+        android:textColor="#555555"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/date_applied_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/description_text"
-        android:text="Date Applied"
-        android:textSize="14sp"
-        android:textColor="#555555" />
+        android:text="@string/date_applied"
+        android:textColor="#555555"
+        android:textSize="14sp" />
 
 </RelativeLayout>

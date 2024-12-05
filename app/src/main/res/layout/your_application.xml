@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F7F7F7"
@@ -11,9 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:contentDescription="Back Button"
         android:padding="8dp"
-        android:src="@drawable/ic_back" />
+        android:src="@drawable/ic_back"
+        tools:ignore="ContentDescription" />
 
     <ScrollView
         android:id="@+id/scrollViewContent"
@@ -33,7 +34,7 @@
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/dm_sans_bold"
                 android:gravity="center"
-                android:text="Lamaran Anda"
+                android:text="@string/lamaran_anda"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
@@ -62,7 +63,7 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_marginEnd="16dp"
-                            android:contentDescription="Company Logo"
+                            android:contentDescription="@string/company_logo"
                             android:src="@drawable/logo_dicoding" />
 
                         <LinearLayout
@@ -74,7 +75,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/dm_sans_bold"
-                                android:text="UI/UX Designer"
+                                android:text="@string/ui_ux_designer"
                                 android:textColor="#000"
                                 android:textSize="14sp" />
 
@@ -82,8 +83,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/dm_sans_reguler"
-                                android:text="Dicoding | Bandung"
-                                android:textColor="#888888"
+                                android:text="@string/dicoding_bandung"
+                                android:textColor="#757575"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -93,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/dm_sans_bold"
-                        android:text="Detail Pekerjaan"
+                        android:text="@string/detail_pekerjaan"
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -102,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/dm_sans_reguler"
-                        android:text="• Desainer Senior\n• Full time\n• 3 Tahun pengalaman"
+                        android:text="@string/desainer_senior_full_time_3_tahun_pengalaman"
                         android:textColor="#555555"
                         android:textSize="12sp" />
 
@@ -111,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/dm_sans_bold"
-                        android:text="Detail Lamaran"
+                        android:text="@string/detail_lamaran"
                         android:textColor="#000"
                         android:textSize="14sp" />
 
@@ -120,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/dm_sans_reguler"
-                        android:text="• CV/Resume"
+                        android:text="@string/cv_resume"
                         android:textColor="#555555"
                         android:textSize="12sp" />
 
@@ -139,7 +140,7 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_marginEnd="12dp"
-                            android:contentDescription="PDF Icon"
+                            android:contentDescription="@string/pdf_icon"
                             android:src="@drawable/ic_pdf_icon" />
 
                         <LinearLayout
@@ -152,7 +153,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/dm_sans_bold"
-                                android:text="Brandon - CV - UI/UX Designer.PDF"
+                                android:text="@string/brandon_cv_ui_ux_designer_pdf"
                                 android:textColor="#000"
                                 android:textSize="12sp" />
 
@@ -160,9 +161,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/dm_sans_reguler"
-                                android:text="867 Kb • 14 Feb 2024 at 11:30 am"
-                                android:textColor="#888888"
-                                android:textSize="10sp" />
+                                android:text="@string/_867_kb_14_feb_2024_at_11_30_am"
+                                android:textColor="#546E7A"
+                                android:textSize="11sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

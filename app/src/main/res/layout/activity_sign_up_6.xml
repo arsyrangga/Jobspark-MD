@@ -23,6 +23,6 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="#72D96B"
-        android:text="NEXT"
+        android:text="@string/next"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

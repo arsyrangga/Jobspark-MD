@@ -10,7 +10,7 @@
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="Back"
+        android:contentDescription="@string/back"
         android:src="@drawable/ic_back" />
 
     <EditText
@@ -24,7 +24,7 @@
         android:background="@drawable/search_bar_background"
         android:drawableStart="@drawable/ic_search_bar"
         android:drawablePadding="8dp"
-        android:hint="Arsitek"
+        android:hint="@string/arsitek"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="#808080"
@@ -40,7 +40,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:contentDescription="No Results Illustration"
+            android:contentDescription="@string/no_results_illustration"
             android:src="@drawable/ic_no_result" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Tidak ada hasil ditemukan"
+            android:text="@string/tidak_ada_hasil_ditemukan"
             android:textColor="#000000"
             android:textSize="16sp" />
     </LinearLayout>

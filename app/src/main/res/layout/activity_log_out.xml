@@ -1,227 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="#F5F5F5"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp" />
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pengaturan"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/pengaturan"
+        android:textColor="#1F1F39"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#1F1F39"
-        android:fontFamily="@font/dm_sans_bold"
-        app:layout_constraintTop_toBottomOf="@id/backButton"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
 
     <LinearLayout
         android:id="@+id/reminderLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_reminder" />
+            android:src="@drawable/ic_reminder"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Pengingat"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/pengingat"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_right" />
+            android:src="@drawable/ic_arrow_right"
+            tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/darkModeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/reminderLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reminderLayout">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_dark_mode" />
+            android:src="@drawable/ic_dark_mode"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Mode Gelap"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/mode_gelap"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/darkModeSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
             android:minHeight="48dp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/changePasswordLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/darkModeLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/darkModeLayout">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_password" />
+            android:src="@drawable/ic_password"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Ganti Password"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/ganti_password"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_right" />
+            android:src="@drawable/ic_arrow_right"
+            tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/logoutLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/changePasswordLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/changePasswordLayout">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_logout" />
+            android:src="@drawable/ic_logout"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Keluar"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/keluar"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_right" />
+            android:src="@drawable/ic_arrow_right"
+            tools:ignore="ImageContrastCheck" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/logoutConfirmationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="#FFFFFF"
+        android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
         <View
             android:layout_width="56dp"
             android:layout_height="4dp"
-            android:background="#1F76D3"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"
+            android:background="#1F76D3" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Keluar"
-            android:textSize="16sp"
-            android:textColor="#1F1F39"
-            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
+            android:text="@string/keluar"
+            android:textColor="#1F1F39"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anda yakin ingin keluar?"
-            android:textSize="14sp"
-            android:textColor="#888888"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:text="@string/konfirmasi_logout"
+            android:textColor="#000000"
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/confirmLogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="YA"
-            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="#1F76D3"
             android:fontFamily="@font/dm_sans_bold"
-            android:layout_marginBottom="8dp" />
+            android:text="@string/ya"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/cancelLogoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="BATAL"
-            android:textColor="#888888"
             android:backgroundTint="#E0E0E0"
-            android:fontFamily="@font/dm_sans_bold" />
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="@string/batal"
+            android:textColor="#757575" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

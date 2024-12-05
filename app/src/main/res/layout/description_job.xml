@@ -14,7 +14,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="start"
-            android:contentDescription="Back"
+            android:contentDescription="@string/back"
             android:src="@drawable/ic_back" />
 
         <ImageView
@@ -23,6 +23,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:background="@drawable/circle_background"
+            android:contentDescription="@string/job_image"
             android:padding="16dp"
             android:src="@drawable/logo_dicoding" />
 
@@ -33,7 +34,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="UI/UX Designer"
+            android:text="@string/ui_ux_designer"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="Dicoding"
+                android:text="@string/dicoding"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -58,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text=" | "
+                android:text="@string/divider"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -67,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="Bandung"
+                android:text="@string/bandung"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -75,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text=" | "
+                android:text="@string/divider"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -84,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="1 hari lalu"
+                android:text="@string/_1_hari_lalu"
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -95,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Deskripsi Pekerjaan"
+            android:text="@string/deskripsi_pekerjaan"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -104,18 +105,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Job Description will be displayed here."
+            android:text="@string/job_description_will_be_displayed_here"
             android:textColor="#444444"
             android:textSize="12sp" />
 
-        <!-- Job Qualification -->
         <TextView
             android:id="@+id/job_qualification_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Kualifikasi"
+            android:text="@string/kualifikasi"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -124,17 +124,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Qualification details here."
+            android:text="@string/qualification_details_here"
             android:textColor="#000000"
             android:textSize="12sp" />
-        <!-- Experience -->
+
         <TextView
             android:id="@+id/min_experience_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Pengalaman Minimal"
+            android:text="@string/pengalaman_minimal"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -143,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="1-2 tahun"
+            android:text="@string/_1_2_tahun"
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Tipe Pekerjaan"
+            android:text="@string/tipe_pekerjaan"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -162,7 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Full Time"
+            android:text="@string/full_time"
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Gaji"
+            android:text="@string/salary"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -180,7 +180,7 @@
             android:id="@+id/job_salary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4.000.000 - 5.000.000"
+            android:text="@string/_4_000_000_5_000_000"
             android:textColor="#000000"
             android:textSize="12sp" />
 
@@ -191,7 +191,7 @@
             android:layout_marginTop="14dp"
             android:backgroundTint="#1E88E5"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="AJUKAN"
+            android:text="@string/ajukan"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>

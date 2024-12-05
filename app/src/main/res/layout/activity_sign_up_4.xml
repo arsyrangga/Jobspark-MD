@@ -19,7 +19,7 @@
         android:layout_below="@id/loadingIndicator"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Mohon Tunggu Sebentar"
+        android:text="@string/mohon_tunggu_sebentar"
         android:textSize="18sp"
         android:textColor="#2196F3"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_below="@id/loadingText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-        android:text="Sedang Melakukan Verifikasi dan Pengecekan"
+        android:text="@string/sedang_melakukan_verifikasi_dan_pengecekan"
         android:textSize="14sp"
         android:textColor="#0A0A0A" />
 </RelativeLayout>

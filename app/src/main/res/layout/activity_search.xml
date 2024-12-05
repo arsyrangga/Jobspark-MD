@@ -20,7 +20,7 @@
         android:background="@drawable/search_bar_background"
         android:drawableStart="@drawable/ic_search_bar"
         android:drawablePadding="8dp"
-        android:hint="Desain"
+        android:hint="@string/desain"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="#808080"

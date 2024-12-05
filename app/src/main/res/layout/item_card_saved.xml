@@ -27,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/job_icon"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="UI/UX Designer"
+            android:text="@string/ui_ux_designer"
             android:textColor="#000000"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
-            android:contentDescription="Delete"
+            android:contentDescription="@string/delete"
             android:src="@drawable/ic_delete" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_alignStart="@id/job_title"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Dicoding • Bandung"
+            android:text="@string/dicoding_bandung"
             android:textColor="#757575"
             android:textSize="14sp" />
 
@@ -63,7 +63,7 @@
             android:layout_marginStart="-46dp"
             android:layout_marginTop="11dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="15 Juta/Bulan"
+            android:text="@string/salary"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -82,7 +82,7 @@
                 android:fontFamily="@font/dm_sans_reguler"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:text="Desainer Senior"
+                android:text="@string/desainer_senior"
                 android:textColor="#000000" />
 
             <Button
@@ -93,7 +93,7 @@
                 android:fontFamily="@font/dm_sans_reguler"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:text="Full time"
+                android:text="@string/full_time"
                 android:textColor="#000000" />
         </LinearLayout>
 

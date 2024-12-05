@@ -11,7 +11,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
-        android:contentDescription="Back"
+        android:contentDescription="@string/back"
         android:src="@drawable/ic_back" />
 
     <ImageView
@@ -28,7 +28,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/dm_sans_reguler"
-        android:text="UI/UX Designer"
+        android:text="@string/ui_ux_designer"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Dicoding"
+            android:text="@string/dicoding"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text=" | "
+            android:text="@string/divider"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Bandung"
+            android:text="@string/bandung"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text=" | "
+            android:text="@string/divider"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="1 hari lalu"
+            android:text="@string/_1_hari_lalu"
             android:textColor="#000000"
             android:textSize="16sp" />
     </LinearLayout>
@@ -87,7 +87,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/dm_sans_bold"
-        android:text="Upload CV"
+        android:text="@string/upload_cv"
         android:textColor="#000000"
         android:textSize="14sp" />
 
@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/dm_sans_reguler"
-        android:text="Unggah dokumen CV Anda"
+        android:text="@string/unggah_dokumen_cv_anda"
         android:textColor="#888888"
         android:textSize="12sp" />
 
@@ -113,7 +113,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="PDF Icon"
+            android:contentDescription="@string/pdf_icon"
             android:src="@drawable/ic_pdf_icon" />
 
 
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="Brandon - CV - UI/UX Designer"
+                android:text="@string/brandon_cv_ui_ux_designer"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
@@ -135,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="867 Kb • 14 Feb 2024 at 11:30 am"
+                android:text="@string/_867_kb_14_feb_2024_at_11_30_am"
                 android:textColor="#888888"
                 android:textSize="12sp" />
 
@@ -161,7 +161,7 @@
         android:layout_marginTop="24dp"
         android:backgroundTint="#007AFF"
         android:paddingVertical="12dp"
-        android:text="AJUKAN"
+        android:text="@string/ajukan"
         android:textColor="#FFFFFF"
         android:textSize="14sp" />
 

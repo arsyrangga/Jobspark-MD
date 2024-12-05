@@ -23,6 +23,6 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:backgroundTint="#FF0000"
-        android:text="COBA LAGI"
+        android:text="@string/coba_lagi"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

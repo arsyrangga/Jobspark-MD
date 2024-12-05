@@ -19,7 +19,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
-            android:contentDescription="Job Image"
+            android:contentDescription="@string/job_image"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder_image" />
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/job_icon"
-            android:text="UI/UX Designer"
+            android:text="@string/ui_ux_designer"
             android:textColor="#000"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -42,7 +42,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_toEndOf="@id/job_icon"
-            android:text="Dicoding • Bandung"
+            android:text="@string/dicoding_bandung"
             android:textColor="#757575"
             android:textSize="14sp" />
 
@@ -54,7 +54,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@id/job_icon"
-            android:text="15 Juta/Bulan"
+            android:text="@string/_15_juta_bulan"
             android:textColor="#000"
             android:textSize="14sp" />
 
@@ -75,7 +75,7 @@
                 android:fontFamily="@font/dm_sans_reguler"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:text="Full time"
+                android:text="@string/full_time"
                 android:textColor="#000000" />
 
             <Button
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFA000"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="Ajukan"
+                android:text="@string/ajukan"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
         <ImageView
@@ -93,7 +93,7 @@
             android:layout_height="24dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:contentDescription="Save Job"
+            android:contentDescription="@string/save_job"
             android:src="@drawable/ic_bookmark" />
     </RelativeLayout>
 
