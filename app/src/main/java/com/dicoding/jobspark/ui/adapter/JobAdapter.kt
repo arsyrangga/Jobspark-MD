@@ -1,6 +1,5 @@
 package com.dicoding.jobspark.ui.adapter
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ class JobAdapter(private var jobs: List<Job>, private val isSimplified: Boolean)
     inner class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.job_title)
         val company: TextView = itemView.findViewById(R.id.company_location)
-        val salary: TextView = itemView.findViewById(R.id.salary)
         val jobType: TextView? =
             itemView.findViewById(R.id.job_type)
         val jobIcon: ImageView = itemView.findViewById(R.id.job_icon)
@@ -36,12 +34,10 @@ class JobAdapter(private var jobs: List<Job>, private val isSimplified: Boolean)
         return JobViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: JobViewHolder, position: Int) {
         val job = jobs[position]
         holder.title.text = job.job_name
         holder.company.text = "${job.company_name} • ${job.location}"
-        holder.salary.text = job.salary
 
         if (!isSimplified) {
             holder.jobType?.text = job.job_type

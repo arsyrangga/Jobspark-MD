@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F5F5F5">
+    android:background="#F5F5F5"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_arrow_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp" />
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pengaturan"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/pengaturan"
+        android:textColor="#1F1F39"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#1F1F39"
-        android:fontFamily="@font/dm_sans_bold"
-        app:layout_constraintTop_toBottomOf="@id/backButton"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
 
     <LinearLayout
         android:id="@+id/reminderLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center_vertical">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView">
 
         <ImageView
             android:layout_width="24dp"
@@ -52,11 +53,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Pengingat"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/pengingat"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="24dp"
@@ -68,14 +69,14 @@
         android:id="@+id/darkModeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/reminderLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reminderLayout">
 
         <ImageView
             android:layout_width="24dp"
@@ -85,33 +86,33 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Mode Gelap"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/mode_gelap"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/darkModeSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
             android:minHeight="48dp" />
+
     </LinearLayout>
 
-    <!-- Item Pengaturan - Ganti Password -->
     <LinearLayout
         android:id="@+id/changePasswordLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/darkModeLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/darkModeLayout">
 
         <ImageView
             android:layout_width="24dp"
@@ -121,11 +122,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
-            android:text="Ganti Password"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:layout_weight="1"
+            android:text="@string/ganti_password"
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="24dp"
@@ -137,14 +138,14 @@
         android:id="@+id/logoutLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@drawable/rounded_edittext"
-        app:layout_constraintTop_toBottomOf="@id/changePasswordLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center_vertical">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/changePasswordLayout">
 
         <ImageView
             android:layout_width="24dp"
@@ -154,11 +155,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginStart="12dp"
+            android:layout_weight="1"
             android:text="Keluar"
-            android:textSize="16sp"
-            android:textColor="#1F1F39" />
+            android:textColor="#1F1F39"
+            android:textSize="16sp" />
 
         <ImageView
             android:layout_width="24dp"
@@ -170,13 +171,13 @@
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SIMPAN"
-        android:textColor="#FFFFFF"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#1F76D3"
         android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/simpan"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

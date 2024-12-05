@@ -15,6 +15,17 @@ data class RegisterRequest(
     val special_ability: String,
     val health_condition: String
 )
+data class ImageRecognitionResponse(
+    val status: Int,
+    val message: String,
+    val data: ImageData
+)
+
+data class ImageData(
+    val url: String
+)
+
+
 
 data class RegisterResponse(
     val status: String,

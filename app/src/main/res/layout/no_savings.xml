@@ -10,7 +10,7 @@
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="Back"
+        android:contentDescription="@string/back"
         android:src="@drawable/ic_back" />
 
     <LinearLayout
@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:contentDescription="No Saved Jobs Illustration"
+            android:contentDescription="@string/no_saved_jobs_illustration"
             android:src="@drawable/ic_no_savings" />
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/dm_sans_bold"
             android:gravity="center"
-            android:text="Tidak ada yang disimpan"
+            android:text="@string/tidak_ada_yang_disimpan"
             android:textColor="#000000"
             android:textSize="16sp" />
     </LinearLayout>
@@ -48,7 +48,7 @@
         android:fontFamily="@font/dm_sans_bold"
         android:paddingHorizontal="24dp"
         android:paddingVertical="12dp"
-        android:text="TEMUKAN LOWONGAN"
+        android:text="@string/temukan_lowongan"
         android:textAllCaps="true"
         android:textColor="#FFFFFF" />
 

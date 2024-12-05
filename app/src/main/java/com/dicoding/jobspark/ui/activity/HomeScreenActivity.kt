@@ -2,6 +2,7 @@ package com.dicoding.jobspark.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,10 +20,17 @@ class HomeScreenActivity : AppCompatActivity() {
 
     private lateinit var recyclerViewJobs: RecyclerView
     private lateinit var jobAdapter: JobAdapter
+    private lateinit var greetingTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        greetingTextView = findViewById(R.id.greeting_text)
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        val fullName = sharedPreferences.getString("FULL_NAME", "User")
+        greetingTextView.text = "Hello, $fullName"
+
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

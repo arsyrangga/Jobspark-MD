@@ -2,6 +2,7 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -19,7 +20,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
-            android:contentDescription="Job Image"
+            android:contentDescription="@string/job_image"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder_image" />
 
@@ -29,10 +30,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/job_icon"
-            android:text="UI/UX Designer"
+            android:text="@string/ui_ux_designer"
             android:textColor="#000"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
 
         <TextView
             android:id="@+id/company_location"
@@ -42,58 +44,36 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_toEndOf="@id/job_icon"
-            android:text="Dicoding • Bandung"
+            android:text="@string/dicoding_bandung"
             android:textColor="#757575"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/salary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/company_location"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/job_icon"
-            android:text="15 Juta/Bulan"
-            android:textColor="#000"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/salary"
+            android:layout_below="@id/company_location"
             android:layout_marginTop="8dp"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/job_type_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:backgroundTint="#E0E0E0"
-                android:fontFamily="@font/dm_sans_reguler"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:text="Full time"
-                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/apply_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="220dp"
                 android:backgroundTint="#FFA000"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="Ajukan"
-                android:textColor="#FFFFFF" />
+                android:text="@string/ajukan"
+                android:textColor="#FFFFFF"
+                tools:ignore="TextContrastCheck" />
         </LinearLayout>
+
         <ImageView
             android:id="@+id/save_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:contentDescription="Save Job"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/save_job"
             android:src="@drawable/ic_bookmark" />
     </RelativeLayout>
 

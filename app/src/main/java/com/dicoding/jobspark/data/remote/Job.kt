@@ -100,11 +100,6 @@ data class JobHistoryDetail(
     val dateApplied: String
 )
 
-
-data class SaveJobRequest(val jobs_id: String)
-
-data class DeleteJobRequest(val id: String)
-
 data class Pagination(
     val total_data: Int,
     val total_pages: Int,

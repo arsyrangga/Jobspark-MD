@@ -38,7 +38,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Brandon"
+            android:text="@string/brandon"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
@@ -49,7 +49,7 @@
             android:layout_below="@id/profileName"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Yogyakarta, ID"
+            android:text="@string/yogyakarta_id"
             android:textColor="#FFFFFF"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -93,7 +93,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/aboutIcon"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="Tentang Saya"
+                    android:text="@string/tentang_saya"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -122,11 +122,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="53dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:fontFamily="@font/dm_sans_reguler"
-                    android:text="Saya adalah seorang profesional yang bersemangat dengan pengalaman di industri teknologi dan manajemen."
+                    android:text="@string/saya_adalah_seorang_profesional_yang_bersemangat_dengan_pengalaman_di_industri_teknologi_dan_manajemen"
                     android:textColor="#777777"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/editIconAbout"
@@ -179,7 +179,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/workIcon"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="Pengalaman Kerja"
+                    android:text="@string/pengalaman_kerja"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="Manager"
+                    android:text="@string/manager"
                     android:textColor="#000000"
                     android:textSize="14sp" />
 
@@ -228,9 +228,9 @@
                     android:layout_below="@id/jobPosition"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/dm_sans_reguler"
-                    android:text="Amazon ID"
+                    android:text="@string/amazon_id"
                     android:textColor="#000000"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/jobDuration"
@@ -239,9 +239,9 @@
                     android:layout_below="@id/companyName"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/dm_sans_reguler"
-                    android:text="Jan 2015 - Feb 2022 · 5 Tahun"
+                    android:text="@string/jan_2015_feb_2022_5_tahun"
                     android:textColor="#777777"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -11,7 +11,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
-        android:contentDescription="Back"
+        android:contentDescription="@string/back"
         android:src="@drawable/ic_back" />
 
     <ImageView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/dm_sans_bold"
-        android:text="Job Title"
+        android:text="@string/job_title"
         android:textColor="#000000"
         android:textSize="16sp" />
 
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/dm_sans_reguler"
-        android:text="Company Name"
+        android:text="@string/company_name"
         android:textColor="#000000"
         android:textSize="14sp" />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/dm_sans_bold"
-        android:text="Upload CV"
+        android:text="@string/upload_cv"
         android:textColor="#000000"
         android:textSize="14sp" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/dm_sans_reguler"
-        android:text="Unggah dokumen CV Anda"
+        android:text="@string/unggah_dokumen_cv_anda"
         android:textColor="#888888"
         android:textSize="12sp" />
 
@@ -72,7 +72,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:contentDescription="Upload CV"
+            android:contentDescription="@string/upload_cv"
             android:src="@drawable/ic_upload" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="Upload CV/Resume"
+            android:text="@string/upload_cv_resume"
             android:textColor="#000000"
             android:textSize="12sp" />
     </LinearLayout>
@@ -97,7 +97,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:contentDescription="PDF Icon"
+            android:contentDescription="@string/pdf_icon"
             android:src="@drawable/ic_pdf_icon" />
 
         <LinearLayout
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_reguler"
-                android:text="No file selected"
+                android:text="@string/no_file_selected"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
@@ -135,7 +135,7 @@
         android:layout_marginTop="24dp"
         android:backgroundTint="#007AFF"
         android:paddingVertical="12dp"
-        android:text="AJUKAN"
+        android:text="@string/ajukan"
         android:textColor="#FFFFFF"
         android:textSize="14sp" />
 

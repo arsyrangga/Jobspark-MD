@@ -15,6 +15,10 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    @Multipart
+    @POST("/api/upload")
+    fun recognizeImage(@Part file: MultipartBody.Part): Call<ImageRecognitionResponse>
+
     @POST("/api/auth/register")
     fun registerUser(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
 

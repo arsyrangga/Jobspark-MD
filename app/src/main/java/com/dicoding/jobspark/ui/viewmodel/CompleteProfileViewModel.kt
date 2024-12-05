@@ -1,7 +1,7 @@
 package com.dicoding.jobspark.ui.viewmodel
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
 class CompleteProfileViewModel : ViewModel() {
     val fullName = MutableLiveData<String>()
