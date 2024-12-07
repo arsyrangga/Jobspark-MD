@@ -32,7 +32,7 @@ class CompleteProfileActivity : AppCompatActivity() {
         val addressEditText = findViewById<EditText>(R.id.addressEditText)
         val emergencyContactEditText = findViewById<EditText>(R.id.emergencyContactEditText)
 
-        val genderOptions = arrayOf("male", "female")
+        val genderOptions = arrayOf("Laki-laki", "Perempuan")
         val genderAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderOptions)
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = genderAdapter

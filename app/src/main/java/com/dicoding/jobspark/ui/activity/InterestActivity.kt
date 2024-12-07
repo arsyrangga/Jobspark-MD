@@ -30,6 +30,7 @@ class InterestActivity : AppCompatActivity() {
         val address = intent.getStringExtra("address")
         val emergencyContact = intent.getStringExtra("emergency_contact")
 
+
         Log.d(
             "InterestActivity",
             "Email: $email, Full Name: $fullName, Gender: $gender, Address: $address, Emergency Contact: $emergencyContact"

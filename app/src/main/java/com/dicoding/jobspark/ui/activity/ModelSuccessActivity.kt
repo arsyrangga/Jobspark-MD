@@ -19,12 +19,12 @@ class ModelSuccessActivity : AppCompatActivity() {
         val gender = intent.getStringExtra("gender")
         val address = intent.getStringExtra("address")
         val emergencyContact = intent.getStringExtra("emergency_contact")
+        val capturedImageUrl = intent.getStringExtra("captured_image_url")
 
         val nextButton: Button = findViewById(R.id.nextButton)
         nextButton.setOnClickListener {
-            val imageUrl = intent.getStringExtra("captured_image_url")
             val intent = Intent(this, InterestActivity::class.java).apply {
-                putExtra("captured_image_url", imageUrl)
+                putExtra("captured_image_url", capturedImageUrl)
                 putExtra("email", email)
                 putExtra("password", password)
                 putExtra("full_name", fullName)

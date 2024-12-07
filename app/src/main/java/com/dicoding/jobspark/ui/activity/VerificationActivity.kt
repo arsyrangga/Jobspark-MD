@@ -3,8 +3,11 @@ package com.dicoding.jobspark.ui.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -18,7 +21,6 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.ImageRecognitionResponse
 import com.dicoding.jobspark.data.remote.RetrofitClient
@@ -45,6 +47,7 @@ class VerificationActivity : AppCompatActivity() {
             uri?.let {
                 capturedImageUri = it
                 displayImage(it)
+                updateButtonState()
             } ?: run {
                 Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show()
             }
@@ -75,7 +78,7 @@ class VerificationActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.captureButton).setOnClickListener { takePhoto() }
         findViewById<Button>(R.id.galleryButton).setOnClickListener { openGallery() }
-
+        findViewById<Button>(R.id.retakeButton).setOnClickListener { retakePhoto() }
         findViewById<Button>(R.id.nextButton).setOnClickListener {
             if (capturedImageUri != null) {
                 processImageRecognition(capturedImageUri!!)
@@ -87,6 +90,7 @@ class VerificationActivity : AppCompatActivity() {
                 ).show()
             }
         }
+        updateButtonState()
     }
 
     private fun startCamera() {
@@ -136,6 +140,7 @@ class VerificationActivity : AppCompatActivity() {
                         "Photo saved successfully!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    updateButtonState()
                 }
             })
     }
@@ -144,9 +149,68 @@ class VerificationActivity : AppCompatActivity() {
         galleryLauncher.launch("image/*")
     }
 
+    private fun getFileFromUri(uri: Uri): File? {
+        val scheme = uri.scheme
+        return if (scheme.equals("content", ignoreCase = true)) {
+            val inputStream = contentResolver.openInputStream(uri)
+            val tempFile = File(cacheDir, "tempImage.jpg")
+            val outputStream = tempFile.outputStream()
+            inputStream?.copyTo(outputStream)
+            tempFile
+        } else if (scheme.equals("file", ignoreCase = true)) {
+            uri.path?.let { File(it) }
+        } else {
+            null
+        }
+    }
+
+
+    private fun retakePhoto() {
+        capturedImageUri = null
+        val previewView = findViewById<PreviewView>(R.id.previewView)
+        val capturedImageView = findViewById<ImageView>(R.id.capturedImageView)
+
+        capturedImageView.visibility = View.GONE
+        previewView.visibility = View.VISIBLE
+        startCamera()
+        updateButtonState()
+    }
+
     private fun displayImage(imageUri: Uri) {
         val capturedImageView = findViewById<ImageView>(R.id.capturedImageView)
-        Glide.with(this).load(imageUri).into(capturedImageView)
+        val previewView = findViewById<PreviewView>(R.id.previewView)
+
+        previewView.visibility = View.GONE
+        capturedImageView.visibility = View.VISIBLE
+
+        val inputStream = contentResolver.openInputStream(imageUri)
+        val bitmap = BitmapFactory.decodeStream(inputStream)
+
+        val isGalleryImage = capturedImageUri == imageUri && imageUri.toString().contains("content")
+
+        if (!isGalleryImage) {
+            val matrix = android.graphics.Matrix()
+            matrix.postRotate(270f)
+            val rotatedBitmap =
+                Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+            capturedImageView.setImageBitmap(rotatedBitmap)
+        } else {
+            capturedImageView.setImageBitmap(bitmap)
+        }
+    }
+
+
+    private fun updateButtonState() {
+        val captureButton = findViewById<Button>(R.id.captureButton)
+        val retakeButton = findViewById<Button>(R.id.retakeButton)
+
+        if (capturedImageUri != null) {
+            captureButton.visibility = View.GONE
+            retakeButton.visibility = View.VISIBLE
+        } else {
+            captureButton.visibility = View.VISIBLE
+            retakeButton.visibility = View.GONE
+        }
     }
 
     private fun allPermissionsGranted(): Boolean {
@@ -180,59 +244,40 @@ class VerificationActivity : AppCompatActivity() {
         ).format(System.currentTimeMillis()) + ".jpg"
     }
 
-    private fun getFileFromUri(uri: Uri): File {
-        val inputStream = contentResolver.openInputStream(uri)
-        val file = File(cacheDir, generateFileName())
-        inputStream?.use { input ->
-            file.outputStream().use { output ->
-                input.copyTo(output)
-            }
-        }
-        return file
-    }
-
     private fun processImageRecognition(imageUri: Uri) {
         val file = getFileFromUri(imageUri)
-        val requestFile = file.asRequestBody("image/jpg".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData(
-            "file", file.name, requestFile
-        )
 
-        val apiService = RetrofitClient.instance
-        apiService.recognizeImage(body).enqueue(object : Callback<ImageRecognitionResponse> {
-            override fun onResponse(
-                call: Call<ImageRecognitionResponse>,
-                response: Response<ImageRecognitionResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val imageUrl = response.body()?.data?.url
-                    if (!imageUrl.isNullOrEmpty()) {
-                        navigateToSuccessPage(imageUrl)
+        file?.let {
+            val requestFile = it.asRequestBody("image/jpg".toMediaTypeOrNull())
+            val body = MultipartBody.Part.createFormData(
+                "file", it.name, requestFile
+            )
+
+            val apiService = RetrofitClient.instance
+            apiService.recognizeImage(body).enqueue(object : Callback<ImageRecognitionResponse> {
+                override fun onResponse(
+                    call: Call<ImageRecognitionResponse>,
+                    response: Response<ImageRecognitionResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val capturedImageUrl = response.body()?.data?.url
+                        navigateToSuccessPage(capturedImageUrl)
                     } else {
                         navigateToFailPage()
                     }
-                } else {
-                    Toast.makeText(
-                        this@VerificationActivity,
-                        "Upload failed: ${response.message()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                }
+
+                override fun onFailure(call: Call<ImageRecognitionResponse>, t: Throwable) {
                     navigateToFailPage()
                 }
-            }
-
-            override fun onFailure(call: Call<ImageRecognitionResponse>, t: Throwable) {
-                Toast.makeText(
-                    this@VerificationActivity,
-                    "Network error: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                navigateToFailPage()
-            }
-        })
+            })
+        } ?: run {
+            Toast.makeText(this, "Unable to process the image", Toast.LENGTH_SHORT).show()
+        }
     }
 
-    private fun navigateToSuccessPage(imageUrl: String) {
+
+    private fun navigateToSuccessPage(capturedImageUrl: String?) {
         val email = intent.getStringExtra("email")
         val password = intent.getStringExtra("password")
         val fullName = intent.getStringExtra("full_name")
@@ -240,8 +285,8 @@ class VerificationActivity : AppCompatActivity() {
         val gender = intent.getStringExtra("gender")
         val address = intent.getStringExtra("address")
         val emergencyContact = intent.getStringExtra("emergency_contact")
+
         val intent = Intent(this, ModelSuccessActivity::class.java).apply {
-            putExtra("captured_image_url", imageUrl)
             putExtra("email", email)
             putExtra("password", password)
             putExtra("full_name", fullName)
@@ -249,15 +294,13 @@ class VerificationActivity : AppCompatActivity() {
             putExtra("gender", gender)
             putExtra("address", address)
             putExtra("emergency_contact", emergencyContact)
+            putExtra("captured_image_url", capturedImageUrl)
         }
         startActivity(intent)
-        finish()
     }
 
     private fun navigateToFailPage() {
-        val intent = Intent(this, ModelFailActivity::class.java)
-        startActivity(intent)
-        finish()
+        startActivity(Intent(this, ModelFailActivity::class.java))
     }
 
     override fun onDestroy() {

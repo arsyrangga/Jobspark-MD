@@ -36,17 +36,23 @@ class RegisterActivity : AppCompatActivity() {
         nextButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
+            val confirmPassword = confirmPasswordEditText.text.toString()
 
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                val intent = Intent(this, CompleteProfileActivity::class.java).apply {
-                    putExtra("email", email)
-                    putExtra("password", password)
+            if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
+                if (password == confirmPassword) {
+                    val intent = Intent(this, CompleteProfileActivity::class.java).apply {
+                        putExtra("email", email)
+                        putExtra("password", password)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 }
-                startActivity(intent)
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     private fun togglePasswordVisibility(passwordEditText: EditText, passwordToggle: ImageView) {
