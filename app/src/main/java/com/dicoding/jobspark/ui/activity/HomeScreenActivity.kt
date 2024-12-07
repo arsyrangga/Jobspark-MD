@@ -27,8 +27,12 @@ class HomeScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         greetingTextView = findViewById(R.id.greeting_text)
+
+        // Retrieve full name from SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val fullName = sharedPreferences.getString("FULL_NAME", "User")
+
+        // Display full name in greeting text
         greetingTextView.text = getString(R.string.hello, fullName)
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)

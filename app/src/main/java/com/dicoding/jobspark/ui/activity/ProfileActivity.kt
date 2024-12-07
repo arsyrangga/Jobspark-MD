@@ -3,15 +3,20 @@ package com.dicoding.jobspark.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileActivity : AppCompatActivity() {
 
+    private lateinit var fullNameTextView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
+        fullNameTextView = findViewById(R.id.profileName)
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
         bottomNav.setOnItemSelectedListener { menuItem ->
@@ -74,5 +79,9 @@ class ProfileActivity : AppCompatActivity() {
         super.onResume()
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.selectedItemId = R.id.profile
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        val fullName = sharedPreferences.getString("FULL_NAME", "User")
+
+        fullNameTextView.text = fullName
     }
 }
