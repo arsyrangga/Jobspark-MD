@@ -34,15 +34,14 @@ interface ApiService {
         @Body updateAboutRequest: UpdateAboutRequest
     ): Call<UpdateResponse>
 
+    @POST("api/auth/logout")
+    fun logout(@Header("Authorization") token: String): Call<Void>
+
     @PUT("/api/auth/profile/password")
     fun updatePassword(
         @Header("Authorization") token: String,
         @Body updatePasswordRequest: UpdatePasswordRequest
     ): Call<UpdateResponse>
-
-    @GET("/api/hobby")
-    fun getHobbies(@Header("Authorization") token: String): Call<List<Hobby>>
-
 
     @GET("/api/jobs")
     fun getJobs(

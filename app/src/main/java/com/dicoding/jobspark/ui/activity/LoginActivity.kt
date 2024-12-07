@@ -70,14 +70,15 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val token = response.body()?.data?.token
-                    if (token != null) {
-                        saveToken(token)
-                        Log.d("Login", "Token saved: $token")
+                    val fullName = response.body()?.data?.full_name
+                    if (token != null && fullName != null) {
+                        saveUserData(token, fullName)
+                        Log.d("Login", "Token saved: $token, Full Name saved: $fullName")
                         val intent = Intent(this@LoginActivity, HomeScreenActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Token not received", Toast.LENGTH_SHORT)
+                        Toast.makeText(this@LoginActivity, "Token or full name not received", Toast.LENGTH_SHORT)
                             .show()
                     }
                 } else {
@@ -94,10 +95,11 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun saveToken(token: String) {
+    private fun saveUserData(token: String, fullName: String) {
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("TOKEN", token)
+        editor.putString("FULL_NAME", fullName)
         editor.apply()
     }
 
