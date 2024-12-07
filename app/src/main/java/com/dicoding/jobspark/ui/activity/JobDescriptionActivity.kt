@@ -37,10 +37,13 @@ class JobDescriptionActivity : AppCompatActivity() {
 
         val applyButton: Button = findViewById(R.id.apply_button)
         applyButton.setOnClickListener {
-            val intent = Intent(this, UploadActivity::class.java)
-            intent.putExtra("job_id", jobId)
-            intent.putExtra("job_name", intent.getStringExtra("job_name"))
-            intent.putExtra("company_name", intent.getStringExtra("company_name"))
+            val jobDetails = intent.extras
+            val intent = Intent(this, UploadActivity::class.java).apply {
+                putExtra("job_id", jobId)
+                putExtra("job_name", jobDetails?.getString("job_name"))
+                putExtra("company_name", jobDetails?.getString("company_name"))
+                putExtra("job_image_url", jobDetails?.getString("job_image_url"))
+            }
             startActivity(intent)
         }
     }
@@ -73,13 +76,16 @@ class JobDescriptionActivity : AppCompatActivity() {
                             findViewById<TextView>(R.id.job_type).text = it.jobType
 
                             val jobImageView: ImageView = findViewById(R.id.job_image)
-
                             val imageUrl = it.image
 
                             Glide.with(this@JobDescriptionActivity)
                                 .load(imageUrl)
                                 .placeholder(R.drawable.placeholder_image)
                                 .into(jobImageView)
+
+                            intent.putExtra("job_name", it.jobName)
+                            intent.putExtra("company_name", it.companyName)
+                            intent.putExtra("job_image_url", imageUrl)
                         }
                     } else {
                         Toast.makeText(
@@ -99,6 +105,5 @@ class JobDescriptionActivity : AppCompatActivity() {
                 }
             })
     }
-
-
 }
+

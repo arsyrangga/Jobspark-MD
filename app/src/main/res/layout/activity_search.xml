@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_above="@+id/recyclerView_jobs"
         android:layout_marginBottom="0dp"
-        android:background="@drawable/upper_background" />
+        android:background="@drawable/upper_background"
+        android:contentDescription="@string/upper_background"
+        android:scaleType="centerCrop"
+        tools:ignore="ImageContrastCheck" />
 
     <EditText
         android:id="@+id/search_bar"
@@ -20,10 +23,13 @@
         android:background="@drawable/search_bar_background"
         android:drawableStart="@drawable/ic_search_bar"
         android:drawablePadding="8dp"
-        android:hint="@string/desain"
+        android:hint="@string/search_jobs"
+        android:importantForAccessibility="yes"
+        android:inputType="text"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textColor="#808080"
+        android:textColorHint="#757575"
         android:textSize="16sp" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -36,7 +42,6 @@
         android:clipToPadding="false"
         android:paddingBottom="80dp"
         tools:listitem="@layout/item_job_card" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -30,7 +30,9 @@
         <activity
             android:name=".ui.activity.HomeActivity"
             android:exported="false" />
-        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.SearchActivity"
+            android:windowSoftInputMode="adjustResize"
+        />
         <activity android:name=".ui.activity.ModelFailActivity" />
         <activity android:name=".ui.activity.ModelSuccessActivity" />
         <activity android:name=".ui.activity.HistoryActivity" />
