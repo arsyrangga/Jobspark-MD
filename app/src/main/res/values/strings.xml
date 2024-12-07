@@ -130,4 +130,7 @@
     <string name="success">Success</string>
     <string name="logo">Logo</string>
     <string name="hello">Hello, %1$s</string>
+    <string name="ambil_ulang">Ambil Ulang</string>
+    <string name="capture_image">Ambil Gambar</string>
+    <string name="take_ulang">Take Ulang</string>
 </resources>
