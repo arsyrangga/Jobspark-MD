@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/recyclerView_jobs"
-        android:layout_marginBottom="-56dp"
-        android:background="@drawable/search_background" />
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/upper_background" />
 
     <EditText
         android:id="@+id/search_bar"

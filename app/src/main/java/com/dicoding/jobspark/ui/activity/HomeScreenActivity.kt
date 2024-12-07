@@ -29,7 +29,7 @@ class HomeScreenActivity : AppCompatActivity() {
         greetingTextView = findViewById(R.id.greeting_text)
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val fullName = sharedPreferences.getString("FULL_NAME", "User")
-        greetingTextView.text = "Hello, $fullName"
+        greetingTextView.text = getString(R.string.hello, fullName)
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { menuItem ->
