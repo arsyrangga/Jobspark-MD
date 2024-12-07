@@ -3,12 +3,16 @@ package com.dicoding.jobspark.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.RetrofitClient
+import com.dicoding.jobspark.data.remote.UpdateAboutRequest
+import com.dicoding.jobspark.data.remote.UpdateResponse
 import com.dicoding.jobspark.data.remote.WorkExperienceResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
@@ -22,6 +26,11 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var companyNameTextView: TextView
     private lateinit var jobDurationTextView: TextView
 
+    private lateinit var aboutDescriptionTextView: TextView
+    private lateinit var editAboutDescription: EditText
+    private lateinit var editIconAbout: ImageView
+    private lateinit var saveDescriptionButton: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -31,8 +40,12 @@ class ProfileActivity : AppCompatActivity() {
         companyNameTextView = findViewById(R.id.companyName)
         jobDurationTextView = findViewById(R.id.jobDuration)
 
-        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        aboutDescriptionTextView = findViewById(R.id.aboutDescription)
+        editAboutDescription = findViewById(R.id.editAboutDescription)
+        editIconAbout = findViewById(R.id.editIconAbout)
+        saveDescriptionButton = findViewById(R.id.saveDescriptionButton)
 
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.home -> {
@@ -90,6 +103,14 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         loadProfileData()
+
+        editIconAbout.setOnClickListener {
+            startEditingDescription()
+        }
+
+        saveDescriptionButton.setOnClickListener {
+            saveDescription()
+        }
     }
 
     override fun onResume() {
@@ -98,13 +119,11 @@ class ProfileActivity : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.profile
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val fullName = sharedPreferences.getString("FULL_NAME", "User")
-
         fullNameTextView.text = fullName
     }
 
     private fun loadProfileData() {
         val token = getSharedPreferences("USER_PREFS", MODE_PRIVATE).getString("TOKEN", "")
-
         if (token.isNullOrEmpty()) {
             showError("Silakan login terlebih dahulu")
             return
@@ -125,12 +144,63 @@ class ProfileActivity : AppCompatActivity() {
                         }
                     } else {
                         Log.e("ProfileActivity", "Failed to fetch work experience")
-                        showError("Gagal memuat data")
+                        showError("Gagal memuat data pekerjaan")
                     }
                 }
 
                 override fun onFailure(call: Call<WorkExperienceResponse>, t: Throwable) {
                     Log.e("ProfileActivity", "Error: ${t.message}")
+                    showError("Terjadi kesalahan jaringan: ${t.message}")
+                }
+            })
+
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        val aboutDescription = sharedPreferences.getString("ABOUT_DESCRIPTION", "Deskripsi tentang saya")
+        aboutDescriptionTextView.text = aboutDescription
+    }
+
+    private fun startEditingDescription() {
+        aboutDescriptionTextView.visibility = View.GONE
+        editAboutDescription.visibility = View.VISIBLE
+        saveDescriptionButton.visibility = View.VISIBLE
+        editAboutDescription.setText(aboutDescriptionTextView.text)
+    }
+
+    private fun saveDescription() {
+        val newDescription = editAboutDescription.text.toString()
+
+        if (newDescription.isNotBlank()) {
+            val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+            sharedPreferences.edit().putString("ABOUT_DESCRIPTION", newDescription).apply()
+
+            updateAboutMe(newDescription)
+
+            aboutDescriptionTextView.text = newDescription
+            aboutDescriptionTextView.visibility = View.VISIBLE
+            editAboutDescription.visibility = View.GONE
+            saveDescriptionButton.visibility = View.GONE
+        } else {
+            Toast.makeText(this, "Deskripsi tidak boleh kosong", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun updateAboutMe(description: String) {
+        val token = getSharedPreferences("USER_PREFS", MODE_PRIVATE).getString("TOKEN", "")
+        if (token.isNullOrEmpty()) {
+            showError("Silakan login terlebih dahulu")
+            return
+        }
+
+        val request = UpdateAboutRequest(about_me = description)
+
+        RetrofitClient.instance.updateAboutMe("Bearer $token", request)
+            .enqueue(object : Callback<UpdateResponse> {
+                override fun onResponse(
+                    call: Call<UpdateResponse>,
+                    response: Response<UpdateResponse>
+                ) {}
+
+                override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
                     showError("Terjadi kesalahan jaringan: ${t.message}")
                 }
             })
