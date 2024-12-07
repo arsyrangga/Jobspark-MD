@@ -117,7 +117,7 @@
     <string name="simpan_lowongan">Simpan Lowongan</string>
     <string name="hello_username">Hello Username</string>
     <string name="banner_desc">Setiap Talenta Berharga: Temukan Kesempatan Kerja yang Sesuai!</string>
-    <string name="recommended_job">Direkomendasikan Untuk Anda</string>
+    <string name="recommended_job">Pekerjaan Spesial Untukmu</string>
     <string name="riwayat">Riwayat</string>
     <string name="hello_guest">Hello Guest</string>
     <string name="setiap_talenta_berharga_temukan_kesempatan_kerja_yang_sesuai">Setiap Talenta Berharga: Temukan Kesempatan Kerja yang Sesuai!</string>
@@ -133,4 +133,6 @@
     <string name="ambil_ulang">Ambil Ulang</string>
     <string name="capture_image">Ambil Gambar</string>
     <string name="take_ulang">Take Ulang</string>
+    <string name="upper_background">Upper Background</string>
+    <string name="search_jobs">Search Jobs</string>
 </resources>

@@ -11,8 +11,3 @@ data class UserData(
     val token: String,
     val user: User
 )
-
-data class UserProfileResponse(
-    val status: String,
-    val data: User
-)

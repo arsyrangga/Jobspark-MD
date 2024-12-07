@@ -81,7 +81,8 @@ data class ApplyJobResponse(
 
 data class UploadResponse(
     val status: String,
-    val message: String
+    val message: String,
+    val resumeId: Int?
 )
 
 data class JobHistory(

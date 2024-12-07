@@ -38,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun fetchJobs() {
-        val call = RetrofitClient.instance.getJobsWithoutToken(page = 1, limit = 10)
+        val call = RetrofitClient.instance.getJobsWithoutToken(page = 1, limit = 100)
 
         call.enqueue(object : Callback<JobListResponse> {
             override fun onResponse(

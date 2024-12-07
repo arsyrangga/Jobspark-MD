@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.ApplyJobRequest
 import com.dicoding.jobspark.data.remote.ApplyJobResponse
@@ -35,28 +36,46 @@ class UploadActivity : AppCompatActivity() {
     private lateinit var fileNameTextView: TextView
     private lateinit var deleteButton: ImageView
     private lateinit var submitButton: Button
+    private lateinit var jobImageView: ImageView
+    private lateinit var jobTitleTextView: TextView
+    private lateinit var companyNameTextView: TextView
+
+    private var jobImageUrl: String? = null
+    private var jobTitle: String? = null
+    private var companyName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cv_upload)
 
         val jobId = intent.getIntExtra("job_id", -1)
-        val jobName = intent.getStringExtra("job_name")
-        val companyName = intent.getStringExtra("company_name")
+        jobTitle = intent.getStringExtra("job_title")
+        companyName = intent.getStringExtra("company_name")
+        jobImageUrl = intent.getStringExtra("job_image_url")
 
         val backButton: ImageView = findViewById(R.id.back_button)
         backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        findViewById<TextView>(R.id.job_title).text = jobName
-        findViewById<TextView>(R.id.company_name).text = companyName
-
         fileUploadContainer = findViewById(R.id.file_upload_container)
         uploadCvButtonContainer = findViewById(R.id.upload_cv_button_container)
         fileNameTextView = findViewById(R.id.file_name)
         deleteButton = findViewById(R.id.delete_button)
         submitButton = findViewById(R.id.submit_button)
+        jobImageView = findViewById(R.id.job_image)
+        jobTitleTextView = findViewById(R.id.job_title)
+        companyNameTextView = findViewById(R.id.company_name)
+
+        jobTitleTextView.text = jobTitle ?: "Job Title Not Available"
+        companyNameTextView.text = companyName ?: "Company Name Not Available"
+
+        jobImageUrl?.let {
+            Glide.with(this)
+                .load(it)
+                .placeholder(R.drawable.placeholder_image)
+                .into(jobImageView)
+        }
 
         submitButton.setOnClickListener {
             if (selectedFilePath != null) {
@@ -211,4 +230,5 @@ class UploadActivity : AppCompatActivity() {
                 }
             })
     }
+
 }

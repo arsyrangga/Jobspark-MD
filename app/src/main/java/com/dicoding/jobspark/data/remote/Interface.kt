@@ -25,17 +25,11 @@ interface ApiService {
     @POST("/api/auth/login")
     fun loginUser(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
-    @GET("/api/auth/profile")
-    fun getUserProfile(@Header("Authorization") token: String): Call<UserProfileResponse>
-
     @PUT("/api/auth/profile/about")
     fun updateAboutMe(
         @Header("Authorization") token: String,
         @Body updateAboutRequest: UpdateAboutRequest
     ): Call<UpdateResponse>
-
-    @POST("api/auth/logout")
-    fun logout(@Header("Authorization") token: String): Call<Void>
 
     @PUT("/api/auth/profile/password")
     fun updatePassword(
@@ -68,6 +62,7 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part
     ): Call<UploadResponse>
+
 
     @GET("api/jobHistory")
     fun getJobHistory(): Call<List<JobHistory>>
