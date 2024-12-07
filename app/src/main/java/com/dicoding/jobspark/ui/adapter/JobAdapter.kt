@@ -18,8 +18,7 @@ class JobAdapter(private var jobs: List<Job>, private val isSimplified: Boolean)
     inner class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.job_title)
         val company: TextView = itemView.findViewById(R.id.company_location)
-        val jobType: TextView? =
-            itemView.findViewById(R.id.job_type)
+        val jobType: TextView? = itemView.findViewById(R.id.job_type)
         val jobIcon: ImageView = itemView.findViewById(R.id.job_icon)
     }
 
@@ -48,13 +47,15 @@ class JobAdapter(private var jobs: List<Job>, private val isSimplified: Boolean)
             .placeholder(R.drawable.placeholder_image)
             .into(holder.jobIcon)
 
-        holder.itemView.setOnClickListener {
-            val context = holder.itemView.context
-            val intent = Intent(context, JobDescriptionActivity::class.java).apply {
-                putExtra("job_id", job.id)
-                putExtra("job_name", job.job_name)
+        if (!isSimplified) {
+            holder.itemView.setOnClickListener {
+                val context = holder.itemView.context
+                val intent = Intent(context, JobDescriptionActivity::class.java).apply {
+                    putExtra("job_id", job.id)
+                    putExtra("job_name", job.job_name)
+                }
+                context.startActivity(intent)
             }
-            context.startActivity(intent)
         }
     }
 
@@ -67,4 +68,3 @@ class JobAdapter(private var jobs: List<Job>, private val isSimplified: Boolean)
         notifyDataSetChanged()
     }
 }
-

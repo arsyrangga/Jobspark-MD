@@ -129,4 +129,5 @@
     <string name="button_back">Button back</string>
     <string name="success">Success</string>
     <string name="logo">Logo</string>
+    <string name="hello">Hello, %1$s</string>
 </resources>
