@@ -87,12 +87,12 @@
                     android:textSize="14sp" />
 
                 <ImageView
-                    android:id="@+id/addIcon"
+                    android:id="@+id/editIconAbout"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_add_circle" />
+                    android:src="@drawable/ic_edit" />
             </RelativeLayout>
 
             <View
@@ -106,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
 
+
                 <TextView
                     android:id="@+id/aboutDescription"
                     android:layout_width="match_parent"
@@ -117,14 +118,28 @@
                     android:textColor="#777777"
                     android:textSize="12sp" />
 
+                <EditText
+                    android:id="@+id/editAboutDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:visibility="gone"
+                    android:background="@android:color/white"
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
                 <ImageView
-                    android:id="@+id/editIconAbout"
+                    android:id="@+id/saveDescriptionButton"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_edit" />
+                    android:visibility="gone"
+                    android:src="@drawable/ic_save" />
             </RelativeLayout>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
