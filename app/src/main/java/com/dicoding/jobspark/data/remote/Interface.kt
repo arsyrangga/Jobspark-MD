@@ -87,4 +87,31 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("limit") limit: Int
     ): Call<JobListResponse>
+
+    @POST("api/auth/profile/work-experience")
+    fun saveWorkExperience(
+        @Header("Authorization") token: String,
+        @Body workExperienceRequest: WorkExperienceRequest
+    ): Call<WorkExperienceResponse>
+
+    @GET("/api/auth/profile/work-experience/{id}")
+    fun getWorkExperienceById(
+        @Path("id") workExperienceId: String,
+        @Header("Authorization") authorization: String
+    ): Call<WorkExperienceResponse>
+
+    @PUT("/api/auth/profile/work-experience/{id}")
+    fun updateWorkExperience(
+        @Path("id") workExperienceId: String,
+        @Header("Authorization") authorization: String,
+        @Body workExperienceRequest: WorkExperienceRequest
+    ): Call<WorkExperienceResponse>
+
+    @DELETE("/api/auth/profile/work-experience/{id}")
+    fun deleteWorkExperience(
+        @Path("id") workExperienceId: String,
+        @Header("Authorization") authorization: String
+    ): Call<Void>
+
+
 }
