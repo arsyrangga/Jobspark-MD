@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,6 +38,10 @@ class InterestActivity : AppCompatActivity() {
         )
 
         val capturedImageUrl = intent.getStringExtra("captured_image_url") ?: "default-profile-url"
+
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         val hobbySpinner = findViewById<Spinner>(R.id.hobbySpinner)
         val specialSkillSpinner = findViewById<Spinner>(R.id.specialSkillSpinner)
