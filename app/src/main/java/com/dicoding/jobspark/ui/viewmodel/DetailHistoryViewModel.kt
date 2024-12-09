@@ -1,5 +1,6 @@
 package com.dicoding.jobspark.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,24 +18,26 @@ class DetailHistoryViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
-    fun fetchJobHistoryDetail(id: Int) {
+    fun fetchJobHistoryDetail(jobHistoryId: Int) {
         val apiService = RetrofitClient.instance
-        apiService.getJobHistoryDetail(id).enqueue(object : Callback<JobHistoryDetail> {
+
+        apiService.getJobHistoryDetail(jobHistoryId).enqueue(object : Callback<JobHistoryDetail> {
             override fun onResponse(
                 call: Call<JobHistoryDetail>,
                 response: Response<JobHistoryDetail>
             ) {
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        _jobHistoryDetail.postValue(it)
-                    }
+                    Log.d("DetailHistoryViewModel", "Response received: ${response.body()}")
+                    _jobHistoryDetail.value = response.body()
                 } else {
-                    _errorMessage.postValue("Failed to load details")
+                    Log.e("DetailHistoryViewModel", "Error: ${response.code()}")
+                    _errorMessage.value = "Failed to load job history details"
                 }
             }
 
             override fun onFailure(call: Call<JobHistoryDetail>, t: Throwable) {
-                _errorMessage.postValue("Error: ${t.message}")
+                Log.e("DetailHistoryViewModel", "Failure: ${t.message}")
+                _errorMessage.value = "Error: ${t.message}"
             }
         })
     }

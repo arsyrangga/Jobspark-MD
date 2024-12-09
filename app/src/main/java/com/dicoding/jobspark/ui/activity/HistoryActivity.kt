@@ -2,12 +2,13 @@ package com.dicoding.jobspark.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.jobspark.R
-import com.dicoding.jobspark.data.remote.JobHistory
+import com.dicoding.jobspark.data.remote.JobHistoryResponse
 import com.dicoding.jobspark.data.remote.RetrofitClient
 import com.dicoding.jobspark.ui.adapter.JobHistoryAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -76,30 +77,72 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun loadJobHistory() {
-        val apiService = RetrofitClient.instance
-        apiService.getJobHistory().enqueue(object : Callback<List<JobHistory>> {
-            override fun onResponse(
-                call: Call<List<JobHistory>>,
-                response: Response<List<JobHistory>>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        jobHistoryAdapter.submitList(it)
-                    }
-                } else {
-                    Toast.makeText(
-                        this@HistoryActivity,
-                        "Failed to load history",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
+        val token = getAuthToken()
 
-            override fun onFailure(call: Call<List<JobHistory>>, t: Throwable) {
-                Toast.makeText(this@HistoryActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        })
+        if (token != null) {
+            val apiService = RetrofitClient.instance
+
+            Log.d("HistoryActivity", "Sending request with token: $token")
+
+            apiService.getJobHistory("Bearer $token")
+                .enqueue(object : Callback<JobHistoryResponse> {
+                    override fun onResponse(
+                        call: Call<JobHistoryResponse>,
+                        response: Response<JobHistoryResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            response.body()?.data?.let {
+                                it.forEach { jobHistory ->
+                                    Log.d("HistoryActivity", "Response Data: $it")
+                                    Log.d("HistoryActivity", "Job Title: ${jobHistory.job_name}")
+                                }
+                                jobHistoryAdapter.submitList(it)
+                            }
+                        } else {
+                            Log.e(
+                                "HistoryActivity",
+                                "Failed response: ${response.code()} ${response.message()}"
+                            )
+                            Toast.makeText(
+                                this@HistoryActivity,
+                                "Failed to load history",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            if (response.code() == 401) {
+                                Toast.makeText(
+                                    this@HistoryActivity,
+                                    "Session expired. Please log in again.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val intent = Intent(this@HistoryActivity, LoginActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<JobHistoryResponse>, t: Throwable) {
+                        Log.e("HistoryActivity", "API call failed: ${t.message}")
+                        Toast.makeText(
+                            this@HistoryActivity,
+                            "Error: ${t.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
+        } else {
+            Toast.makeText(this, "Please log in first", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun getAuthToken(): String? {
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        val token = sharedPreferences.getString("TOKEN", null)
+        Log.d("HistoryActivity", "Token retrieved: $token")
+        return token
     }
 
     override fun onResume() {

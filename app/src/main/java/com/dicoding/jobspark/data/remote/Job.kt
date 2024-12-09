@@ -81,25 +81,44 @@ data class ApplyJobResponse(
 )
 
 data class UploadResponse(
-    val status: String,
+    val status: Int,
     val message: String,
-    val resumeId: Int?
+    val data: ResumeData?
+)
+
+data class ResumeData(
+    val id: Int,
+    val url: String,
+    val fileName: String,
+    val fileSize: String,
+    val createdAt: String
 )
 
 data class JobHistory(
     val id: Int,
-    val jobTitle: String,
-    val companyName: String,
-    val status: String
+    val job_name: String,
+    val status: String,
+    val applied_at: String,
+    val image: String,
+    val company_name: String,
+    val location: String,
+    val position: String,
+    val job_type: String,
+    val salary: String
 )
+
 
 data class JobHistoryDetail(
     val id: Int,
-    val jobTitle: String,
-    val companyName: String,
+    val job_name: String,
     val status: String,
-    val description: String,
-    val dateApplied: String
+    val applied_at: String,
+    val image: String,
+    val company_name: String,
+    val location: String,
+    val position: String,
+    val job_type: String,
+    val salary: String
 )
 
 data class Pagination(
@@ -107,5 +126,9 @@ data class Pagination(
     val total_pages: Int,
     val current_page: Int,
     val limit: Int
+)
+
+data class JobHistoryResponse(
+    val data: List<JobHistory>
 )
 

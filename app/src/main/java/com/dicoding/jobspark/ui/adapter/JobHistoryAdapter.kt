@@ -1,5 +1,6 @@
 package com.dicoding.jobspark.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,8 @@ class JobHistoryAdapter(private val onItemClick: (JobHistory) -> Unit) :
         private val jobStatus: TextView = itemView.findViewById(R.id.job_status)
 
         fun bind(jobHistory: JobHistory) {
-            jobTitle.text = jobHistory.jobTitle
+            Log.d("JobHistoryAdapter", "Job Title: ${jobHistory.job_name}")
+            jobTitle.text = jobHistory.job_name
             jobStatus.text = jobHistory.status
 
             itemView.setOnClickListener {
