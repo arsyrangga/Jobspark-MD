@@ -15,22 +15,12 @@
         android:padding="16dp"
         tools:ignore="VisualLintBounds">
 
-        <ImageView
-            android:id="@+id/job_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8dp"
-            android:contentDescription="@string/job_icon"
-            android:src="@drawable/logo_dicoding" />
-
         <TextView
             android:id="@+id/job_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="12dp"
-            android:layout_toEndOf="@id/job_icon"
             android:fontFamily="@font/dm_sans_bold"
             android:text="@string/ui_ux_designer"
             android:textColor="#222222"
@@ -44,25 +34,9 @@
             android:layout_below="@id/job_title"
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
-            android:layout_toEndOf="@id/job_icon"
             android:fontFamily="@font/dm_sans_reguler"
             android:text="@string/lamaran_anda_telah_terkirim"
             android:textColor="#555555"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/detail_button"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_below="@id/job_status"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="#1A73E8"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="@string/detail"
-            android:textColor="#FFFFFF"
             android:textSize="14sp" />
 
     </RelativeLayout>

@@ -34,6 +34,7 @@
             android:windowSoftInputMode="adjustResize"
         />
         <activity android:name=".ui.activity.ModelFailActivity" />
+        <activity android:name=".ui.activity.SuccessUploadActivity" />
         <activity android:name=".ui.activity.ModelSuccessActivity" />
         <activity android:name=".ui.activity.HistoryActivity" />
         <activity android:name=".ui.activity.OnboardingActivity" />

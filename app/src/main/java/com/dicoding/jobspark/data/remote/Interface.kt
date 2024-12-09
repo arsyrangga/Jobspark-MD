@@ -63,24 +63,13 @@ interface ApiService {
         @Part file: MultipartBody.Part
     ): Call<UploadResponse>
 
-
-    @GET("api/jobHistory")
-    fun getJobHistory(): Call<List<JobHistory>>
+    @GET("/api/jobHistory")
+    fun getJobHistory(
+        @Header("Authorization") token: String
+    ): Call<JobHistoryResponse>
 
     @GET("api/jobHistory/{id}")
-    fun getJobHistoryDetail(@Path("id") id: Int): Call<JobHistoryDetail>
-
-    @POST("user/save-job/{jobId}")
-    fun saveJob(
-        @Header("Authorization") token: String,
-        @Path("jobId") jobId: Int
-    ): Call<Void>
-
-    @DELETE("user/delete-job/{jobId}")
-    fun deleteSavedJob(
-        @Header("Authorization") token: String,
-        @Path("jobId") jobId: Int
-    ): Call<Void>
+    fun getJobHistoryDetail(@Path("id") jobHistoryId: Int): Call<JobHistoryDetail>
 
     @GET("jobs")
     fun getJobsWithoutToken(

@@ -3,6 +3,7 @@ package com.dicoding.jobspark.ui.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -114,7 +115,26 @@ class UploadActivity : AppCompatActivity() {
     }
 
     private fun getFilePath(uri: Uri): String? {
-        return uri.path
+        val inputStream = contentResolver.openInputStream(uri)
+        if (inputStream == null) {
+            Log.e("FileError", "Failed to open InputStream for URI: $uri")
+            return null
+        }
+
+        // Save the input stream to a local file
+        val file = File(filesDir, "upload_${System.currentTimeMillis()}.pdf")
+        try {
+            inputStream.use { input ->
+                file.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+            return file.absolutePath // Returning the file path as String
+        } catch (e: Exception) {
+            Log.e("FileError", "Error while copying the file: ${e.message}")
+        }
+
+        return null
     }
 
     private fun updateUIAfterFileSelected() {
@@ -130,62 +150,71 @@ class UploadActivity : AppCompatActivity() {
     }
 
     private fun uploadResume(jobId: Int) {
-        val file = File(selectedFilePath)
+        if (selectedFilePath != null) {
+            val file = File(selectedFilePath!!) // Ensure selectedFilePath is non-null
+            val requestBody: RequestBody = file.asRequestBody("application/pdf".toMediaTypeOrNull())
+            val filePart = MultipartBody.Part.createFormData("file", file.name, requestBody)
 
-        val requestBody: RequestBody = file.asRequestBody("application/pdf".toMediaTypeOrNull())
-        val filePart = MultipartBody.Part.createFormData("file", file.name, requestBody)
+            val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+            val token = sharedPreferences.getString("TOKEN", "")
 
-        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
-        val token = sharedPreferences.getString("TOKEN", "")
+            if (token.isNullOrEmpty()) {
+                Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+                return
+            }
 
-        if (token.isNullOrEmpty()) {
-            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
-            return
-        }
+            RetrofitClient.instance.uploadResume("Bearer $token", filePart)
+                .enqueue(object : Callback<UploadResponse> {
+                    override fun onResponse(
+                        call: Call<UploadResponse>,
+                        response: Response<UploadResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val uploadStatus = response.body()?.status
+                            val uploadMessage = response.body()?.message
+                            val resumeData = response.body()?.data
 
-        RetrofitClient.instance.uploadResume("Bearer $token", filePart)
-            .enqueue(object : Callback<UploadResponse> {
-                override fun onResponse(
-                    call: Call<UploadResponse>,
-                    response: Response<UploadResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val uploadStatus = response.body()?.status
-                        if (uploadStatus == "success") {
-                            val resumeId = response.body()?.message?.toIntOrNull() ?: 0
-                            if (resumeId != 0) {
-                                applyForJob(jobId, resumeId)
+                            Log.d("UploadResponse", "Status: $uploadStatus, Message: $uploadMessage, ResumeData: $resumeData")
+
+                            // Ensure that 'status' is checked
+                            if (uploadStatus == 200 && uploadMessage == "SUCCESS") {
+                                if (resumeData != null && resumeData.id != 0) {
+                                    applyForJob(jobId, resumeData.id)
+                                } else {
+                                    Log.d("UploadResponse", "Response: ${response.body()}")
+                                    Toast.makeText(
+                                        this@UploadActivity,
+                                        "Invalid resume ID",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             } else {
                                 Toast.makeText(
                                     this@UploadActivity,
-                                    "Invalid resume ID",
+                                    "Failed to upload resume: $uploadMessage",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
                         } else {
                             Toast.makeText(
                                 this@UploadActivity,
-                                "Failed to upload resume: ${response.body()?.message}",
+                                "Failed to upload resume: ${response.code()} - ${response.message()}",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    } else {
+                    }
+
+                    override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
                         Toast.makeText(
                             this@UploadActivity,
-                            "Failed to upload resume",
+                            "Network error: ${t.message}",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
-                }
-
-                override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
-                    Toast.makeText(
-                        this@UploadActivity,
-                        "Network error: ${t.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
+                })
+        } else {
+            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun applyForJob(jobId: Int, resumeId: Int) {
@@ -211,7 +240,11 @@ class UploadActivity : AppCompatActivity() {
                             "Application submitted successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-                        finish()
+
+                        // Navigate to the success screen after successful application submission
+                        val intent = Intent(this@UploadActivity, SuccessUploadActivity::class.java)
+                        startActivity(intent)
+                        finish()  // Close the current activity
                     } else {
                         Toast.makeText(
                             this@UploadActivity,
