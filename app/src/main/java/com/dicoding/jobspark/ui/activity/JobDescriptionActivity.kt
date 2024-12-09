@@ -40,7 +40,7 @@ class JobDescriptionActivity : AppCompatActivity() {
             val jobDetails = intent.extras
             val intent = Intent(this, UploadActivity::class.java).apply {
                 putExtra("job_id", jobId)
-                putExtra("job_name", jobDetails?.getString("job_name"))
+                putExtra("job_title", jobDetails?.getString("job_name"))
                 putExtra("company_name", jobDetails?.getString("company_name"))
                 putExtra("job_image_url", jobDetails?.getString("job_image_url"))
             }
