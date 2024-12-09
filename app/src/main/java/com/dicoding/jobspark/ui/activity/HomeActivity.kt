@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
         recyclerViewJobs = findViewById(R.id.recyclerView_jobs)
         recyclerViewJobs.layoutManager = LinearLayoutManager(this)
 
-        jobAdapter = JobAdapter(emptyList(), isSimplified = true)
+        jobAdapter = JobAdapter(mutableListOf(), isSimplified = true, isEditable = false)
         recyclerViewJobs.adapter = jobAdapter
 
         fetchJobs()

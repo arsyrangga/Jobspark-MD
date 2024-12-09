@@ -28,11 +28,9 @@ class HomeScreenActivity : AppCompatActivity() {
 
         greetingTextView = findViewById(R.id.greeting_text)
 
-        // Retrieve full name from SharedPreferences
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val fullName = sharedPreferences.getString("FULL_NAME", "User")
 
-        // Display full name in greeting text
         greetingTextView.text = getString(R.string.hello, fullName)
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -77,6 +75,9 @@ class HomeScreenActivity : AppCompatActivity() {
         recyclerViewJobs = findViewById(R.id.recyclerView_jobs)
         recyclerViewJobs.layoutManager = LinearLayoutManager(this)
 
+        jobAdapter = JobAdapter(mutableListOf(), isSimplified = false)
+        recyclerViewJobs.adapter = jobAdapter
+
         fetchJobs()
     }
 
@@ -98,8 +99,7 @@ class HomeScreenActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val jobListResponse = response.body()
                         if (jobListResponse != null && jobListResponse.data.isNotEmpty()) {
-                            jobAdapter = JobAdapter(jobListResponse.data, isSimplified = false)
-                            recyclerViewJobs.adapter = jobAdapter
+                            jobAdapter.updateData(jobListResponse.data)
                         } else {
                             Toast.makeText(
                                 this@HomeScreenActivity,
@@ -126,3 +126,4 @@ class HomeScreenActivity : AppCompatActivity() {
             })
     }
 }
+

@@ -1,16 +1,36 @@
 package com.dicoding.jobspark.ui.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.jobspark.R
+import com.dicoding.jobspark.data.remote.Job
+import com.dicoding.jobspark.ui.adapter.JobAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class SavedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_job_saved)
+
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView_saved)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val sharedPreferences = getSharedPreferences("SAVED_JOBS", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val savedJobsJson = sharedPreferences.getString("SAVED_JOBS_LIST", "[]")
+        val jobListType = object : TypeToken<List<Job>>() {}.type
+        val savedJobs: List<Job> = gson.fromJson(savedJobsJson, jobListType)
+
+        val jobAdapter =
+            JobAdapter(savedJobs.toMutableList(), isSimplified = false, isEditable = true)
+        recyclerView.adapter = jobAdapter
 
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
 

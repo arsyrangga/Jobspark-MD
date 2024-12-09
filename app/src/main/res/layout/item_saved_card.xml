@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="171dp"
+    android:layout_height="80dp"
     android:layout_margin="8dp"
     android:layout_marginBottom="16dp"
     android:backgroundTint="#FFFFFF"
@@ -10,14 +11,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rounded_corner"
+        android:layout_height="wrap_content"
         android:padding="16dp">
 
         <ImageView
             android:id="@+id/job_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:contentDescription="@string/icon"
             android:src="@drawable/logo_dicoding" />
 
         <TextView
@@ -53,49 +54,6 @@
             android:text="@string/dicoding_bandung"
             android:textColor="#757575"
             android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/salary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/company_location"
-            android:layout_alignStart="@id/job_title"
-            android:layout_marginStart="-46dp"
-            android:layout_marginTop="11dp"
-            android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/salary"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/salary"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#E0E0E0"
-                android:fontFamily="@font/dm_sans_reguler"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:text="@string/desainer_senior"
-                android:textColor="#000000" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#E0E0E0"
-                android:fontFamily="@font/dm_sans_reguler"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp"
-                android:text="@string/full_time"
-                android:textColor="#000000" />
-        </LinearLayout>
 
     </RelativeLayout>
 

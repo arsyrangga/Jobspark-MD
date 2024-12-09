@@ -26,7 +26,7 @@
         android:layout_marginTop="16dp"
         android:clipToPadding="false"
         android:paddingBottom="80dp"
-        tools:listitem="@layout/item_card_saved" />
+        tools:listitem="@layout/item_saved_card" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
