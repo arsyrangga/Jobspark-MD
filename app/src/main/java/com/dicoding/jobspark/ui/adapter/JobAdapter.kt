@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.Job
+import com.dicoding.jobspark.ui.activity.JobDescriptionActivity
 import com.dicoding.jobspark.ui.activity.UploadActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -53,6 +54,18 @@ class JobAdapter(
             .load(job.image)
             .placeholder(R.drawable.placeholder_image)
             .into(holder.jobIcon)
+        if (isSimplified) {
+            holder.itemView.setOnClickListener(null)
+        } else {
+            holder.itemView.setOnClickListener {
+                val context = holder.itemView.context
+                val intent = Intent(context, JobDescriptionActivity::class.java).apply {
+                    putExtra("job_id", job.id)
+                    putExtra("job_name", job.job_name)
+                }
+                context.startActivity(intent)
+            }
+        }
 
         val sharedPreferences =
             holder.itemView.context.getSharedPreferences("SAVED_JOBS", Context.MODE_PRIVATE)
