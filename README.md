@@ -37,7 +37,7 @@ A job seeker platform specifically designed for individuals with Down syndrome, 
 ### Installation
 #### 1. Clone this Project to your Computer
 ```bash
-git clone https://github.com/NazhifFahmi/JobSpark
+git clone https://github.com/JobSpark-Everyone-Can-Shine/Jobspark-MD.git
 ```
 
 or you can use Android Studio 
