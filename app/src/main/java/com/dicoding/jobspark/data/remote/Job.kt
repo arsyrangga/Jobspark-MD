@@ -1,6 +1,7 @@
 package com.dicoding.jobspark.data.remote
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Job(
     val id: Int,
@@ -15,7 +16,7 @@ data class Job(
     val job_type: String,
     val salary: String,
     val created_at: String
-)
+) : Serializable
 
 
 data class JobListResponse(
