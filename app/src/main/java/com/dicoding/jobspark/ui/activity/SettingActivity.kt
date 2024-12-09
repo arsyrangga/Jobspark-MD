@@ -64,6 +64,11 @@ class SettingActivity : AppCompatActivity() {
         editor.remove("TOKEN")
         editor.remove("FULL_NAME")
         editor.apply()
+
+        val jobSharedPreferences = getSharedPreferences("SAVED_JOBS", MODE_PRIVATE)
+        val jobEditor = jobSharedPreferences.edit()
+        jobEditor.remove("SAVED_JOBS_LIST")
+        jobEditor.apply()
     }
 
 
