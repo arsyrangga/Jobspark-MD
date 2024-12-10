@@ -4,23 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.jobspark.R
-import com.dicoding.jobspark.data.remote.JobListResponse
-import com.dicoding.jobspark.data.remote.RetrofitClient
 import com.dicoding.jobspark.ui.adapter.JobAdapter
+import com.dicoding.jobspark.ui.viewmodel.HomeScreenViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeScreenActivity : AppCompatActivity() {
 
     private lateinit var recyclerViewJobs: RecyclerView
     private lateinit var jobAdapter: JobAdapter
     private lateinit var greetingTextView: TextView
+
+    private val homeScreenViewModel: HomeScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,52 +77,33 @@ class HomeScreenActivity : AppCompatActivity() {
         jobAdapter = JobAdapter(mutableListOf(), isSimplified = false)
         recyclerViewJobs.adapter = jobAdapter
 
-        fetchJobs()
-    }
+        observeViewModel()
 
-    private fun fetchJobs() {
-        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val token = sharedPreferences.getString("TOKEN", "")
-
         if (token.isNullOrEmpty()) {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
             return
         }
+        homeScreenViewModel.fetchJobs(token, 1, 10)
+    }
 
-        RetrofitClient.instance.getJobs("Bearer $token", 1, 10)
-            .enqueue(object : Callback<JobListResponse> {
-                override fun onResponse(
-                    call: Call<JobListResponse>,
-                    response: Response<JobListResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val jobListResponse = response.body()
-                        if (jobListResponse != null && jobListResponse.data.isNotEmpty()) {
-                            jobAdapter.updateData(jobListResponse.data)
-                        } else {
-                            Toast.makeText(
-                                this@HomeScreenActivity,
-                                "No jobs found",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    } else {
-                        Toast.makeText(
-                            this@HomeScreenActivity,
-                            "Failed to fetch jobs",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
+    private fun observeViewModel() {
+        homeScreenViewModel.jobList.observe(this) { jobs ->
+            if (jobs.isNotEmpty()) {
+                jobAdapter.updateData(jobs)
+            }
+        }
 
-                override fun onFailure(call: Call<JobListResponse>, t: Throwable) {
-                    Toast.makeText(
-                        this@HomeScreenActivity,
-                        "Network error: ${t.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })
+        homeScreenViewModel.errorMessage.observe(this) { message ->
+            message?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        homeScreenViewModel.isLoading.observe(this) { isLoading ->
+            if (isLoading) {
+                Toast.makeText(this, "Loading jobs...", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
-

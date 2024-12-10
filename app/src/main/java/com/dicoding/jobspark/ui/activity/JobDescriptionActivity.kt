@@ -106,4 +106,3 @@ class JobDescriptionActivity : AppCompatActivity() {
             })
     }
 }
-
