@@ -147,6 +147,16 @@ class HistoryActivity : AppCompatActivity() {
         super.onResume()
         val bottomNav: BottomNavigationView = findViewById(R.id.history_bottom_navigation)
         bottomNav.selectedItemId = R.id.history
+        val token = getAuthToken()
+        if (token == null) {
+            Toast.makeText(this, "Session expired. Please log in again.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            loadJobHistory()
+        }
     }
+
 }
 
