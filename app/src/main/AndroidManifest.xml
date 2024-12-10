@@ -4,13 +4,17 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
 
 
     <application
@@ -30,9 +34,9 @@
         <activity
             android:name=".ui.activity.HomeActivity"
             android:exported="false" />
-        <activity android:name=".ui.activity.SearchActivity"
-            android:windowSoftInputMode="adjustResize"
-        />
+        <activity
+            android:name=".ui.activity.SearchActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.activity.ModelFailActivity" />
         <activity android:name=".ui.activity.SuccessUploadActivity" />
         <activity android:name=".ui.activity.ModelSuccessActivity" />
@@ -41,8 +45,6 @@
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.ProfileActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.WorkExperienceActivity" />
-        <activity android:name=".ui.activity.WorkExperienceEditActivity" />
         <activity android:name=".ui.activity.EditPasswordActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.HomeScreenActivity" />
@@ -51,7 +53,6 @@
         <activity android:name=".ui.activity.SavedActivity" />
         <activity android:name=".ui.activity.UploadActivity" />
         <activity android:name=".ui.activity.JobDescriptionActivity" />
-        <activity android:name=".ui.activity.DetailHistoryActivity" />
         <activity android:name=".ui.activity.CompleteProfileActivity" />
         <activity
             android:name=".ui.activity.SplashActivity"

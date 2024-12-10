@@ -26,6 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
+@Suppress("DEPRECATION")
 class UploadActivity : AppCompatActivity() {
 
     private var selectedFilePath: String? = null
@@ -103,6 +104,7 @@ class UploadActivity : AppCompatActivity() {
         startActivityForResult(selectFileIntent, REQUEST_CODE_PICK_FILE)
     }
 
+    @Deprecated("This method has been deprecated in favor of using the Activity Result API\n      which brings increased type safety via an {@link ActivityResultContract} and the prebuilt\n      contracts for common intents available in\n      {@link androidx.activity.result.contract.ActivityResultContracts}, provides hooks for\n      testing, and allow receiving results in separate, testable classes independent from your\n      activity. Use\n      {@link #registerForActivityResult(ActivityResultContract, ActivityResultCallback)}\n      with the appropriate {@link ActivityResultContract} and handling the result in the\n      {@link ActivityResultCallback#onActivityResult(Object) callback}.")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_PICK_FILE && resultCode == RESULT_OK) {
@@ -121,7 +123,6 @@ class UploadActivity : AppCompatActivity() {
             return null
         }
 
-        // Save the input stream to a local file
         val file = File(filesDir, "upload_${System.currentTimeMillis()}.pdf")
         try {
             inputStream.use { input ->
@@ -129,7 +130,7 @@ class UploadActivity : AppCompatActivity() {
                     input.copyTo(output)
                 }
             }
-            return file.absolutePath // Returning the file path as String
+            return file.absolutePath
         } catch (e: Exception) {
             Log.e("FileError", "Error while copying the file: ${e.message}")
         }
@@ -151,7 +152,7 @@ class UploadActivity : AppCompatActivity() {
 
     private fun uploadResume(jobId: Int) {
         if (selectedFilePath != null) {
-            val file = File(selectedFilePath!!) // Ensure selectedFilePath is non-null
+            val file = File(selectedFilePath!!)
             val requestBody: RequestBody = file.asRequestBody("application/pdf".toMediaTypeOrNull())
             val filePart = MultipartBody.Part.createFormData("file", file.name, requestBody)
 
@@ -174,9 +175,11 @@ class UploadActivity : AppCompatActivity() {
                             val uploadMessage = response.body()?.message
                             val resumeData = response.body()?.data
 
-                            Log.d("UploadResponse", "Status: $uploadStatus, Message: $uploadMessage, ResumeData: $resumeData")
+                            Log.d(
+                                "UploadResponse",
+                                "Status: $uploadStatus, Message: $uploadMessage, ResumeData: $resumeData"
+                            )
 
-                            // Ensure that 'status' is checked
                             if (uploadStatus == 200 && uploadMessage == "SUCCESS") {
                                 if (resumeData != null && resumeData.id != 0) {
                                     applyForJob(jobId, resumeData.id)
@@ -241,10 +244,9 @@ class UploadActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        // Navigate to the success screen after successful application submission
                         val intent = Intent(this@UploadActivity, SuccessUploadActivity::class.java)
                         startActivity(intent)
-                        finish()  // Close the current activity
+                        finish()
                     } else {
                         Toast.makeText(
                             this@UploadActivity,

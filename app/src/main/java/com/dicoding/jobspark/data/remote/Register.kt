@@ -15,6 +15,7 @@ data class RegisterRequest(
     val special_ability: String,
     val health_condition: String
 )
+
 data class ImageRecognitionResponse(
     val status: Int,
     val message: String,
@@ -24,7 +25,6 @@ data class ImageRecognitionResponse(
 data class ImageData(
     val url: String
 )
-
 
 
 data class RegisterResponse(

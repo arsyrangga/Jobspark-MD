@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.dicoding.jobspark.R
 import com.dicoding.jobspark.data.remote.Job
 import com.dicoding.jobspark.ui.activity.JobDescriptionActivity
-import com.dicoding.jobspark.ui.activity.UploadActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -85,7 +84,7 @@ class JobAdapter(
 
             if (savedJobs.any { it.id == job.id }) {
                 savedJobs.removeAll { it.id == job.id }
-                holder.saveIcon?.setImageResource(R.drawable.ic_bookmark)
+                holder.saveIcon.setImageResource(R.drawable.ic_bookmark)
                 Toast.makeText(
                     holder.itemView.context,
                     "Job removed from saved!",
@@ -93,7 +92,7 @@ class JobAdapter(
                 ).show()
             } else {
                 savedJobs.add(job)
-                holder.saveIcon?.setImageResource(R.drawable.ic_bookmark_filled)
+                holder.saveIcon.setImageResource(R.drawable.ic_bookmark_filled)
                 Toast.makeText(
                     holder.itemView.context,
                     "Job saved successfully!",
@@ -111,7 +110,7 @@ class JobAdapter(
             holder.jobType?.text = job.job_type
             holder.applyButton?.setOnClickListener {
                 val context = holder.itemView.context
-                val intent = Intent(context, UploadActivity::class.java).apply {
+                val intent = Intent(context, JobDescriptionActivity::class.java).apply {
                     putExtra("job_id", job.id)
                 }
                 context.startActivity(intent)
