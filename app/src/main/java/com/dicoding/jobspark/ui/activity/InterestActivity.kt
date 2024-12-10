@@ -144,7 +144,6 @@ class InterestActivity : AppCompatActivity() {
             emergency_number = emergencyContact,
             profile_img = capturedImageUrl,
             hobby = hobby,
-            interest = specialSkill,
             special_ability = specialSkill,
             health_condition = healthCondition
         )
