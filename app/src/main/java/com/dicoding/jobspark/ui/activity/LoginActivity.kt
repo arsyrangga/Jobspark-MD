@@ -2,8 +2,10 @@ package com.dicoding.jobspark.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +25,11 @@ class LoginActivity : AppCompatActivity() {
         val registerButton: Button = findViewById(R.id.regbutton)
         val emailEditText = findViewById<EditText>(R.id.emailLoginEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordLoginEditText)
+        val passwordToggle: ImageView = findViewById(R.id.passwordToggle)
+
+        passwordToggle.setOnClickListener {
+            togglePasswordVisibility(passwordEditText, passwordToggle)
+        }
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -40,6 +47,20 @@ class LoginActivity : AppCompatActivity() {
         }
 
         observeLoginState()
+    }
+
+    private fun togglePasswordVisibility(passwordEditText: EditText, passwordToggle: ImageView) {
+        val isPasswordVisible =
+            passwordEditText.inputType == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        if (isPasswordVisible) {
+            passwordEditText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            passwordToggle.setImageResource(R.drawable.ic_visibility_off)
+        } else {
+            passwordEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            passwordToggle.setImageResource(R.drawable.ic_visibility)
+        }
+        passwordEditText.setSelection(passwordEditText.text.length)
     }
 
     private fun observeLoginState() {
