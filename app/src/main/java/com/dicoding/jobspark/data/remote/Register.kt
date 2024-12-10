@@ -11,7 +11,6 @@ data class RegisterRequest(
     val emergency_number: String,
     val profile_img: String,
     val hobby: String,
-    val interest: String,
     val special_ability: String,
     val health_condition: String
 )

@@ -67,6 +67,12 @@ class VerificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verification)
 
+
+        capturedImageUri = intent.getParcelableExtra("captured_image_uri")
+        capturedImageUri?.let {
+            displayImage(it)
+        }
+
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
 
@@ -261,6 +267,7 @@ class VerificationActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val capturedImageUrl = response.body()?.data?.url
+                        capturedImageUri = imageUri
                         navigateToSuccessPage(capturedImageUrl)
                     } else {
                         navigateToFailPage()
@@ -300,8 +307,20 @@ class VerificationActivity : AppCompatActivity() {
     }
 
     private fun navigateToFailPage() {
-        startActivity(Intent(this, ModelFailActivity::class.java))
+        val intent = Intent(this, ModelFailActivity::class.java).apply {
+            putExtra("captured_image_uri", capturedImageUri)
+            putExtra("email", intent.getStringExtra("email"))
+            putExtra("password", intent.getStringExtra("password"))
+            putExtra("full_name", intent.getStringExtra("full_name"))
+            putExtra("birth_date", intent.getStringExtra("birth_date"))
+            putExtra("gender", intent.getStringExtra("gender"))
+            putExtra("address", intent.getStringExtra("address"))
+            putExtra("emergency_contact", intent.getStringExtra("emergency_contact"))
+        }
+        startActivity(intent)
+        finish()
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

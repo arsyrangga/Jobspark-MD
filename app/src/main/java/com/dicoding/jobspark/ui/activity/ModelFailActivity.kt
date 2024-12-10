@@ -14,9 +14,19 @@ class ModelFailActivity : AppCompatActivity() {
 
         val retryButton: Button = findViewById(R.id.retryButton)
         retryButton.setOnClickListener {
-            val intent = Intent(this, VerificationActivity::class.java)
+            val intent = Intent(this, VerificationActivity::class.java).apply {
+                putExtra("email", intent.getStringExtra("email"))
+                putExtra("password", intent.getStringExtra("password"))
+                putExtra("full_name", intent.getStringExtra("full_name"))
+                putExtra("birth_date", intent.getStringExtra("birth_date"))
+                putExtra("gender", intent.getStringExtra("gender"))
+                putExtra("address", intent.getStringExtra("address"))
+                putExtra("emergency_contact", intent.getStringExtra("emergency_contact"))
+            }
             startActivity(intent)
             finish()
         }
+
+
     }
 }
