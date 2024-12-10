@@ -43,7 +43,7 @@ class SearchActivity : AppCompatActivity() {
         searchEditText = findViewById(R.id.search_bar)
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://jobspark-api-299853389560.asia-southeast2.run.app/api/")  // Replace with your actual API base URL
+            .baseUrl("https://jobspark-api-299853389560.asia-southeast2.run.app/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

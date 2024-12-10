@@ -78,7 +78,11 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Token or full name not received", Toast.LENGTH_SHORT)
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Token or full name not received",
+                            Toast.LENGTH_SHORT
+                        )
                             .show()
                     }
                 } else {

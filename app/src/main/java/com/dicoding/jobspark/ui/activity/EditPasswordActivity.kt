@@ -5,6 +5,7 @@ import android.text.InputType
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
@@ -56,7 +57,34 @@ class EditPasswordActivity : AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            // Implement update password logic
+            val oldPassword = oldPasswordEditText.text.toString()
+            val newPassword = newPasswordEditText.text.toString()
+            val confirmPassword = confirmPasswordEditText.text.toString()
+
+            if (newPassword != confirmPassword) {
+                Toast.makeText(
+                    this,
+                    "New password and confirm password do not match.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            val token = getTokenFromPreferences()
+
+            if (token != null) {
+                viewModel.updatePassword(oldPassword, newPassword, token)
+            } else {
+                Toast.makeText(this, "User not logged in. Please log in first.", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+        viewModel.updatePasswordResponse.observe(this) { responseMessage ->
+            Toast.makeText(this, responseMessage, Toast.LENGTH_SHORT).show()
+            if (responseMessage.contains("updated successfully")) {
+                finish()
+            }
         }
     }
 
@@ -73,5 +101,10 @@ class EditPasswordActivity : AppCompatActivity() {
             toggleButton.setImageResource(R.drawable.ic_visibility_off)
         }
         editText.setSelection(editText.text.length)
+    }
+
+    private fun getTokenFromPreferences(): String? {
+        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
+        return sharedPreferences.getString("TOKEN", null)
     }
 }
