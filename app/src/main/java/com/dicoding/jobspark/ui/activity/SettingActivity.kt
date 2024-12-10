@@ -49,6 +49,8 @@ class SettingActivity : AppCompatActivity() {
         Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show()
 
         clearUserData()
+        clearJobHistory()
+
 
         Toast.makeText(this, "Logout successful", Toast.LENGTH_SHORT).show()
 
@@ -69,6 +71,13 @@ class SettingActivity : AppCompatActivity() {
         val jobEditor = jobSharedPreferences.edit()
         jobEditor.remove("SAVED_JOBS_LIST")
         jobEditor.apply()
+    }
+
+    private fun clearJobHistory() {
+        val jobHistorySharedPreferences = getSharedPreferences("USER_JOB_HISTORY", MODE_PRIVATE)
+        val editor = jobHistorySharedPreferences.edit()
+        editor.clear()
+        editor.apply()
     }
 
 

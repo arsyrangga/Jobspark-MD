@@ -108,19 +108,6 @@ data class JobHistory(
 )
 
 
-data class JobHistoryDetail(
-    val id: Int,
-    val job_name: String,
-    val status: String,
-    val applied_at: String,
-    val image: String,
-    val company_name: String,
-    val location: String,
-    val position: String,
-    val job_type: String,
-    val salary: String
-)
-
 data class Pagination(
     val total_data: Int,
     val total_pages: Int,

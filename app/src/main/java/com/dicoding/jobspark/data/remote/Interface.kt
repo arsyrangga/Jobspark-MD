@@ -3,14 +3,12 @@ package com.dicoding.jobspark.data.remote
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -68,39 +66,12 @@ interface ApiService {
         @Header("Authorization") token: String
     ): Call<JobHistoryResponse>
 
-    @GET("api/jobHistory/{id}")
-    fun getJobHistoryDetail(@Path("id") jobHistoryId: Int): Call<JobHistoryDetail>
 
     @GET("jobs")
     fun getJobsWithoutToken(
         @Query("page") page: Int,
         @Query("limit") limit: Int
     ): Call<JobListResponse>
-
-    @POST("api/auth/profile/work-experience")
-    fun saveWorkExperience(
-        @Header("Authorization") token: String,
-        @Body workExperienceRequest: WorkExperienceRequest
-    ): Call<WorkExperienceResponse>
-
-    @GET("/api/auth/profile/work-experience/{id}")
-    fun getWorkExperienceById(
-        @Path("id") workExperienceId: String,
-        @Header("Authorization") authorization: String
-    ): Call<WorkExperienceResponse>
-
-    @PUT("/api/auth/profile/work-experience/{id}")
-    fun updateWorkExperience(
-        @Path("id") workExperienceId: String,
-        @Header("Authorization") authorization: String,
-        @Body workExperienceRequest: WorkExperienceRequest
-    ): Call<WorkExperienceResponse>
-
-    @DELETE("/api/auth/profile/work-experience/{id}")
-    fun deleteWorkExperience(
-        @Path("id") workExperienceId: String,
-        @Header("Authorization") authorization: String
-    ): Call<Void>
 
 
 }
