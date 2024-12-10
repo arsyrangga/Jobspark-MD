@@ -27,12 +27,10 @@ class HistoryActivity : AppCompatActivity() {
         val bottomNav: BottomNavigationView = findViewById(R.id.history_bottom_navigation)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView_history)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        jobHistoryAdapter = JobHistoryAdapter { jobHistory ->
-            val intent = Intent(this, DetailHistoryActivity::class.java)
-            intent.putExtra("jobHistoryId", jobHistory.id)
-            startActivity(intent)
+        jobHistoryAdapter = JobHistoryAdapter {
         }
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = jobHistoryAdapter
 
         loadJobHistory()
@@ -151,3 +149,4 @@ class HistoryActivity : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.history
     }
 }
+

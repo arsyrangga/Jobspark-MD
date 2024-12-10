@@ -10,8 +10,8 @@
     app:cardElevation="8dp">
 
     <RelativeLayout
-        android:layout_width="407dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:padding="16dp"
         tools:ignore="VisualLintBounds">
 
@@ -22,23 +22,46 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="12dp"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="@string/ui_ux_designer"
+            android:text="@string/job_title"
             android:textColor="#222222"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/job_status"
+            android:id="@+id/company_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/job_title"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/lamaran_anda_telah_terkirim"
+            android:text="@string/company_name"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/job_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/company_name"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/dm_sans_reguler"
+            android:text="@string/status"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/applied_at"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/job_status"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/dm_sans_reguler"
+            android:text="@string/date_applied"
             android:textColor="#555555"
             android:textSize="14sp" />
 
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

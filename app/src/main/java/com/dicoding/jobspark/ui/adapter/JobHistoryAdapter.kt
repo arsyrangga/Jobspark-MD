@@ -28,11 +28,15 @@ class JobHistoryAdapter(private val onItemClick: (JobHistory) -> Unit) :
     inner class JobHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val jobTitle: TextView = itemView.findViewById(R.id.job_title)
         private val jobStatus: TextView = itemView.findViewById(R.id.job_status)
+        private val companyName: TextView = itemView.findViewById(R.id.company_name)
+        private val appliedAt: TextView = itemView.findViewById(R.id.applied_at)
 
         fun bind(jobHistory: JobHistory) {
             Log.d("JobHistoryAdapter", "Job Title: ${jobHistory.job_name}")
             jobTitle.text = jobHistory.job_name
             jobStatus.text = jobHistory.status
+            companyName.text = jobHistory.company_name
+            appliedAt.text = jobHistory.applied_at
 
             itemView.setOnClickListener {
                 onItemClick(jobHistory)
