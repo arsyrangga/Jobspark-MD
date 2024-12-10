@@ -3,7 +3,6 @@ package com.dicoding.jobspark.ui.activity
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -192,17 +191,8 @@ class VerificationActivity : AppCompatActivity() {
         val inputStream = contentResolver.openInputStream(imageUri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
 
-        val isGalleryImage = capturedImageUri == imageUri && imageUri.toString().contains("content")
+        capturedImageView.setImageBitmap(bitmap)
 
-        if (!isGalleryImage) {
-            val matrix = android.graphics.Matrix()
-            matrix.postRotate(270f)
-            val rotatedBitmap =
-                Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-            capturedImageView.setImageBitmap(rotatedBitmap)
-        } else {
-            capturedImageView.setImageBitmap(bitmap)
-        }
     }
 
 
