@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
@@ -59,7 +60,7 @@
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/dm_sans_reguler"
         android:text="@string/unggah_dokumen_cv_anda"
-        android:textColor="#888888"
+        android:textColor="#546E7A"
         android:textSize="12sp" />
 
     <LinearLayout
@@ -138,6 +139,7 @@
         android:paddingVertical="12dp"
         android:text="@string/ajukan"
         android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

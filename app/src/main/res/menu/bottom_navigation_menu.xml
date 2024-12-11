@@ -3,25 +3,25 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/ic_home"
-        android:title="Beranda" />
+        android:title="@string/beranda" />
 
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search"
-        android:title="Pencarian" />
+        android:title="@string/pencarian" />
 
     <item
         android:id="@+id/history"
         android:icon="@drawable/ic_history"
-        android:title="Riwayat" />
+        android:title="@string/riwayat" />
 
     <item
         android:id="@+id/saved"
         android:icon="@drawable/ic_svjobs"
-        android:title="Tersimpan" />
+        android:title="@string/tersimpan" />
 
     <item
         android:id="@+id/profile"
         android:icon="@drawable/ic_profile"
-        android:title="Profil" />
+        android:title="@string/profil" />
 </menu>

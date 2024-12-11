@@ -114,7 +114,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/dm_sans_reguler"
-                    android:text="@string/saya_adalah_seorang_profesional_yang_bersemangat_dengan_pengalaman_di_industri_teknologi_dan_manajemen"
+                    android:text="@string/tambahkan_deskripsi_singkat"
                     android:textColor="#777777"
                     android:textSize="12sp" />
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
@@ -19,6 +20,7 @@
         android:layout_height="80dp"
         android:layout_gravity="center"
         android:background="@drawable/circle_background"
+        android:contentDescription="@string/company_logo"
         android:padding="16dp"
         android:src="@drawable/logo_dicoding" />
 
@@ -54,7 +56,8 @@
             android:fontFamily="@font/dm_sans_reguler"
             android:text=" | "
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,7 +73,8 @@
             android:fontFamily="@font/dm_sans_reguler"
             android:text=" | "
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -144,6 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:contentDescription="@string/delete"
                 android:src="@drawable/ic_delete" />
         </LinearLayout>
 
