@@ -7,31 +7,28 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.jobspark.R
-import com.dicoding.jobspark.data.remote.RetrofitClient
-import com.dicoding.jobspark.data.remote.UpdateAboutRequest
-import com.dicoding.jobspark.data.remote.UpdateResponse
+import com.dicoding.jobspark.ui.viewmodel.ProfileViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
+@Suppress("UNUSED_EXPRESSION")
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var fullNameTextView: TextView
-
     private lateinit var aboutDescriptionTextView: TextView
     private lateinit var editAboutDescription: EditText
     private lateinit var editIconAbout: ImageView
     private lateinit var saveDescriptionButton: ImageView
+
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         fullNameTextView = findViewById(R.id.profileName)
-
         aboutDescriptionTextView = findViewById(R.id.aboutDescription)
         editAboutDescription = findViewById(R.id.editAboutDescription)
         editIconAbout = findViewById(R.id.editIconAbout)
@@ -40,79 +37,59 @@ class ProfileActivity : AppCompatActivity() {
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.home -> {
-                    val intent = Intent(this, HomeScreenActivity::class.java)
-                    startActivity(intent)
-                    true
+                R.id.home -> startActivity(Intent(this, HomeScreenActivity::class.java))
+                R.id.search -> startActivity(Intent(this, SearchActivity::class.java))
+                R.id.history -> startActivity(Intent(this, HistoryActivity::class.java))
+                R.id.saved -> startActivity(Intent(this, SavedActivity::class.java))
+                R.id.profile -> if (this::class.java != ProfileActivity::class.java) {
+                    startActivity(Intent(this, ProfileActivity::class.java))
                 }
-
-                R.id.search -> {
-                    val intent = Intent(this, SearchActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.history -> {
-                    val intent = Intent(this, HistoryActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.saved -> {
-                    val intent = Intent(this, SavedActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
-
-                R.id.profile -> {
-                    if (this::class.java != ProfileActivity::class.java) {
-                        val intent = Intent(this, ProfileActivity::class.java)
-                        startActivity(intent)
-                    }
-                    true
-                }
-
                 else -> false
             }
+            true
         }
 
         val settingButton: ImageView = findViewById(R.id.settingsIcon)
         settingButton.setOnClickListener {
-            val intent = Intent(this, SettingActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, SettingActivity::class.java))
         }
 
+        editIconAbout.setOnClickListener { startEditingDescription() }
+        saveDescriptionButton.setOnClickListener { saveDescription() }
+
+        observeViewModel()
         loadProfileData()
-
-        editIconAbout.setOnClickListener {
-            startEditingDescription()
-        }
-
-        saveDescriptionButton.setOnClickListener {
-            saveDescription()
-        }
     }
 
     override fun onResume() {
         super.onResume()
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.selectedItemId = R.id.profile
+
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val fullName = sharedPreferences.getString("FULL_NAME", "User")
-        fullNameTextView.text = fullName
+        viewModel.loadFullName(fullName ?: "User")
+    }
+
+    private fun observeViewModel() {
+        viewModel.fullName.observe(this) { name ->
+            fullNameTextView.text = name
+        }
+
+        viewModel.aboutDescription.observe(this) { description ->
+            aboutDescriptionTextView.text = description
+        }
+
+        viewModel.error.observe(this) { errorMessage ->
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun loadProfileData() {
-        val token = getSharedPreferences("USER_PREFS", MODE_PRIVATE).getString("TOKEN", "")
-        if (token.isNullOrEmpty()) {
-            showError("Silakan login terlebih dahulu")
-            return
-        }
-
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
-        val aboutDescription =
-            sharedPreferences.getString("ABOUT_DESCRIPTION", "Deskripsi tentang saya")
-        aboutDescriptionTextView.text = aboutDescription
+        val token = sharedPreferences.getString("TOKEN", "")
+        val aboutDescription = sharedPreferences.getString("ABOUT_DESCRIPTION", "Deskripsi tentang saya")
+        viewModel.loadProfileData(token, aboutDescription ?: "Deskripsi tentang saya")
     }
 
     private fun startEditingDescription() {
@@ -124,46 +101,16 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun saveDescription() {
         val newDescription = editAboutDescription.text.toString()
-
         if (newDescription.isNotBlank()) {
             val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
-            sharedPreferences.edit().putString("ABOUT_DESCRIPTION", newDescription).apply()
+            val token = sharedPreferences.getString("TOKEN", "")
+            viewModel.updateAboutMe(token, newDescription)
 
-            updateAboutMe(newDescription)
-
-            aboutDescriptionTextView.text = newDescription
             aboutDescriptionTextView.visibility = View.VISIBLE
             editAboutDescription.visibility = View.GONE
             saveDescriptionButton.visibility = View.GONE
         } else {
             Toast.makeText(this, "Deskripsi tidak boleh kosong", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun updateAboutMe(description: String) {
-        val token = getSharedPreferences("USER_PREFS", MODE_PRIVATE).getString("TOKEN", "")
-        if (token.isNullOrEmpty()) {
-            showError("Silakan login terlebih dahulu")
-            return
-        }
-
-        val request = UpdateAboutRequest(about_me = description)
-
-        RetrofitClient.instance.updateAboutMe("Bearer $token", request)
-            .enqueue(object : Callback<UpdateResponse> {
-                override fun onResponse(
-                    call: Call<UpdateResponse>,
-                    response: Response<UpdateResponse>
-                ) {
-                }
-
-                override fun onFailure(call: Call<UpdateResponse>, t: Throwable) {
-                    showError("Terjadi kesalahan jaringan: ${t.message}")
-                }
-            })
-    }
-
-    private fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }

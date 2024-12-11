@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="80dp"
     android:layout_margin="8dp"
@@ -31,7 +32,8 @@
             android:text="@string/ui_ux_designer"
             android:textColor="#000000"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="RelativeOverlap" />
 
         <ImageView
             android:id="@+id/delete_icon"
@@ -41,7 +43,8 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:contentDescription="@string/delete"
-            android:src="@drawable/ic_delete" />
+            android:src="@drawable/ic_delete"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/company_location"

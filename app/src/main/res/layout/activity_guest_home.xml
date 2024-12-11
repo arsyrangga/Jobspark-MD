@@ -53,7 +53,7 @@
             android:layout_marginStart="17dp"
             android:layout_marginTop="-50dp"
             android:fontFamily="@font/dm_sans_reguler"
-            android:text="@string/setiap_talenta_berharga_temukan_kesempatan_kerja_yang_sesuai"
+            android:text="@string/banner_desc"
             android:textColor="#FFFFFF"
             android:textSize="17sp" />
 
