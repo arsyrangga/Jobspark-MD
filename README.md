@@ -59,7 +59,6 @@ A job seeker platform specifically designed for individuals with Down syndrome, 
 ### Dependencies
 - [x] [Retrofit](https://square.github.io/retrofit/)
 - [x] [CameraX](https://developer.android.com/training/camerax)
-- [x] [Navigation](https://developer.android.com/jetpack/compose/navigation)
 
 ### Installation
 #### 1. Clone this Project to your Computer
