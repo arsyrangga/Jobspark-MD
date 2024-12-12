@@ -56,10 +56,6 @@ A job seeker platform specifically designed for individuals with Down syndrome, 
   <img src="https://github.com/JobSpark-Everyone-Can-Shine/Jobspark-MD/blob/main/Display/22.jpg" alt="Screenshot 22" width="180" />
 </div>
 
-### Dependencies
-- [x] [Retrofit](https://square.github.io/retrofit/)
-- [x] [CameraX](https://developer.android.com/training/camerax)
-
 ### Installation
 #### 1. Clone this Project to your Computer
 ```bash
