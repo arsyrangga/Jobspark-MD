@@ -9,9 +9,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.dicoding.jobspark.R
 import com.dicoding.jobspark.ui.viewmodel.ProfileViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import de.hdodenhof.circleimageview.CircleImageView
 
 @Suppress("UNUSED_EXPRESSION")
 class ProfileActivity : AppCompatActivity() {
@@ -21,6 +23,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var editAboutDescription: EditText
     private lateinit var editIconAbout: ImageView
     private lateinit var saveDescriptionButton: ImageView
+    private lateinit var profileImage: CircleImageView
 
     private val viewModel: ProfileViewModel by viewModels()
 
@@ -28,6 +31,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
+        profileImage = findViewById(R.id.profileImage)
         fullNameTextView = findViewById(R.id.profileName)
         aboutDescriptionTextView = findViewById(R.id.aboutDescription)
         editAboutDescription = findViewById(R.id.editAboutDescription)
@@ -65,15 +69,19 @@ class ProfileActivity : AppCompatActivity() {
         super.onResume()
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.selectedItemId = R.id.profile
-
-        val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
-        val fullName = sharedPreferences.getString("FULL_NAME", "User")
-        viewModel.loadFullName(fullName ?: "User")
     }
 
     private fun observeViewModel() {
         viewModel.fullName.observe(this) { name ->
             fullNameTextView.text = name
+        }
+
+        viewModel.imageuri.observe(this) { imageUrl ->
+            Glide.with(this) // atau requireContext() jika di Fragment
+                .load(imageUrl)
+                .placeholder(R.drawable.pp)
+                .error(R.drawable.pp)
+                .into(profileImage)
         }
 
         viewModel.aboutDescription.observe(this) { description ->
@@ -88,8 +96,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun loadProfileData() {
         val sharedPreferences = getSharedPreferences("USER_PREFS", MODE_PRIVATE)
         val token = sharedPreferences.getString("TOKEN", "")
-        val aboutDescription = sharedPreferences.getString("ABOUT_DESCRIPTION", "Deskripsi tentang saya")
-        viewModel.loadProfileData(token, aboutDescription ?: "Deskripsi tentang saya")
+        viewModel.loadProfileData(token)
     }
 
     private fun startEditingDescription() {

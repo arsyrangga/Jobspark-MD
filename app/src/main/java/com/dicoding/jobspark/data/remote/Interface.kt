@@ -14,54 +14,59 @@ import retrofit2.http.Query
 interface ApiService {
 
     @Multipart
-    @POST("/api/upload")
+    @POST("upload")
     fun recognizeImage(@Part file: MultipartBody.Part): Call<ImageRecognitionResponse>
 
-    @POST("/api/auth/register")
+    @POST("auth/register")
     fun registerUser(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
 
-    @POST("/api/auth/login")
+    @POST("auth/login")
     fun loginUser(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
-    @PUT("/api/auth/profile/about")
+    @GET("auth/profile")
+    fun getProfile(
+        @Header("Authorization") token: String? = null,
+    ): Call<UserResponse>
+
+    @PUT("auth/profile/about")
     fun updateAboutMe(
         @Header("Authorization") token: String,
         @Body updateAboutRequest: UpdateAboutRequest
     ): Call<UpdateResponse>
 
-    @PUT("/api/auth/profile/password")
+    @PUT("auth/profile/password")
     fun updatePassword(
         @Header("Authorization") token: String,
         @Body updatePasswordRequest: UpdatePasswordRequest
     ): Call<UpdateResponse>
 
-    @GET("/api/jobs")
+    @GET("jobs")
     fun getJobs(
         @Header("Authorization") token: String? = null,
         @Query("page") page: Int,
         @Query("limit") limit: Int
     ): Call<JobListResponse>
 
-    @GET("/api/jobs/{id}")
+    @GET("jobs/{id}")
     fun getJobDetail(
         @Header("Authorization") token: String,
         @retrofit2.http.Path("id") jobId: Int
     ): Call<JobDetailResponse>
 
-    @POST("/api/jobs/apply")
+    @POST("jobs/apply")
     fun applyJob(
         @Header("Authorization") token: String,
         @Body applyJobRequest: ApplyJobRequest
     ): Call<ApplyJobResponse>
 
     @Multipart
-    @POST("/api/resume/upload")
+    @POST("resume/upload")
     fun uploadResume(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part
     ): Call<UploadResponse>
 
-    @GET("/api/jobHistory")
+    @GET("jobHistory")
     fun getJobHistory(
         @Header("Authorization") token: String
     ): Call<JobHistoryResponse>
